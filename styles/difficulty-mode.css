@@ -143,23 +143,4 @@ body.reddit-mode.mode-all .reddit-post-content .advanced-concept {
   display: none;
 }
 
-/* --- Responsive --- */
-@media (max-width: 480px) {
-  .mode-selector {
-    height: 26px;
-  }
-
-  .mode-btn {
-    padding: 0 7px;
-    font-size: 10px;
-  }
-
-  .concept-card {
-    padding: 12px;
-    font-size: 13px;
-  }
-
-  .concept-card-icon {
-    font-size: 18px;
-  }
-}
+/* Responsive rules are in responsive.css */

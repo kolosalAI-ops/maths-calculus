@@ -589,68 +589,19 @@ body.reddit-mode .reddit-loading {
   to { transform: rotate(360deg); }
 }
 
-/* --- Mobile optimizations --- */
-@media (max-width: 768px) {
-  .reddit-feed {
-    padding: 4px;
-    gap: 4px;
-  }
-
-  .reddit-post {
-    border-left: none;
-    border-right: none;
-    border-radius: 0;
-  }
-
-  .reddit-vote {
-    min-width: 32px;
-    padding: 8px 2px;
-  }
-
-  .reddit-post-title {
-    font-size: 15px;
-  }
-
-  .reddit-sub-header {
-    padding: 10px 12px;
-  }
-
-  body.reddit-mode .reddit-post-content .content-card {
-    padding: 0;
-  }
-
-  body.reddit-mode .reddit-post-content .rules-grid,
-  body.reddit-mode .reddit-post-content .concept-grid {
-    grid-template-columns: 1fr;
-  }
-
-  body.reddit-mode .reddit-post-content .rules-grid.three-col {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .reddit-vote {
-    display: none;
-  }
-
-  .reddit-post-body {
-    padding: 10px 12px 6px;
-  }
-
-  .reddit-mobile-votes {
-    display: flex !important;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .reddit-mobile-votes .reddit-vote-btn {
-    width: 28px;
-    height: 28px;
-  }
-}
-
+/* --- Mobile votes (hidden by default, shown on tiny screens via responsive.css) --- */
 .reddit-mobile-votes {
   display: none;
+  align-items: center;
+  gap: 6px;
   margin-right: 4px;
+}
+
+.reddit-mobile-votes .reddit-vote-btn {
+  width: 26px;
+  height: 26px;
+}
+
+.reddit-mobile-votes .reddit-vote-count {
+  font-size: 12px;
 }
