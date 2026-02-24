@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kolosal Math — High School to Calculus 1</title>
+  <link rel="stylesheet" href="styles/kolosal.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/dark-mode.css">
+  <link rel="stylesheet" href="styles/responsive.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="app-header">
+    <div class="header-left flex items-center gap-3">
+      <button class="btn btn-sm-icon btn-ghost sidebar-toggle" aria-label="Toggle sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="logo flex items-center gap-2">
+        <div class="logo-mark">K</div>
+        <span class="logo-text medium">Kolosal Math</span>
+      </div>
+    </div>
+    <div class="header-center flex items-center gap-2">
+      <div class="progress-container">
+        <div class="progress-bar" id="readingProgress"></div>
+      </div>
+      <span class="progress-label text-12px text-muted" id="progressLabel">0%</span>
+    </div>
+    <div class="header-right flex items-center gap-2">
+      <label class="switch switch-sm" title="Dark mode">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="switch-slider"></span>
+      </label>
+      <svg class="dark-mode-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </div>
+  </header>
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title text-12px semibold">FOUNDATIONS</div>
+        <a href="#ch-number-systems" class="sidebar-link" data-chapter="ch-number-systems">
+          <span class="sidebar-link-number">1</span>
+          Number Systems & Properties
+        </a>
+        <a href="#ch-algebra-basics" class="sidebar-link" data-chapter="ch-algebra-basics">
+          <span class="sidebar-link-number">2</span>
+          Algebra Basics
+        </a>
+        <a href="#ch-equations" class="sidebar-link" data-chapter="ch-equations">
+          <span class="sidebar-link-number">3</span>
+          Equations & Inequalities
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title text-12px semibold">FUNCTIONS</div>
+        <a href="#ch-functions-intro" class="sidebar-link" data-chapter="ch-functions-intro">
+          <span class="sidebar-link-number">4</span>
+          Functions & Graphs
+        </a>
+        <a href="#ch-linear-quadratic" class="sidebar-link" data-chapter="ch-linear-quadratic">
+          <span class="sidebar-link-number">5</span>
+          Linear & Quadratic Functions
+        </a>
+        <a href="#ch-polynomial" class="sidebar-link" data-chapter="ch-polynomial">
+          <span class="sidebar-link-number">6</span>
+          Polynomial & Rational Functions
+        </a>
+        <a href="#ch-exponential-log" class="sidebar-link" data-chapter="ch-exponential-log">
+          <span class="sidebar-link-number">7</span>
+          Exponential & Logarithmic
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title text-12px semibold">TRIGONOMETRY</div>
+        <a href="#ch-trig-basics" class="sidebar-link" data-chapter="ch-trig-basics">
+          <span class="sidebar-link-number">8</span>
+          Trigonometric Functions
+        </a>
+        <a href="#ch-trig-identities" class="sidebar-link" data-chapter="ch-trig-identities">
+          <span class="sidebar-link-number">9</span>
+          Trig Identities & Equations
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title text-12px semibold">CALCULUS 1</div>
+        <a href="#ch-limits" class="sidebar-link" data-chapter="ch-limits">
+          <span class="sidebar-link-number">10</span>
+          Limits & Continuity
+        </a>
+        <a href="#ch-derivatives" class="sidebar-link" data-chapter="ch-derivatives">
+          <span class="sidebar-link-number">11</span>
+          Derivatives
+        </a>
+        <a href="#ch-diff-rules" class="sidebar-link" data-chapter="ch-diff-rules">
+          <span class="sidebar-link-number">12</span>
+          Differentiation Rules
+        </a>
+        <a href="#ch-applications-deriv" class="sidebar-link" data-chapter="ch-applications-deriv">
+          <span class="sidebar-link-number">13</span>
+          Applications of Derivatives
+        </a>
+        <a href="#ch-integrals" class="sidebar-link" data-chapter="ch-integrals">
+          <span class="sidebar-link-number">14</span>
+          Integrals
+        </a>
+        <a href="#ch-ftc" class="sidebar-link" data-chapter="ch-ftc">
+          <span class="sidebar-link-number">15</span>
+          Fundamental Theorem of Calculus
+        </a>
+        <a href="#ch-applications-int" class="sidebar-link" data-chapter="ch-applications-int">
+          <span class="sidebar-link-number">16</span>
+          Applications of Integrals
+        </a>
+      </div>
+
+    </nav>
+  </aside>
+
+  <!-- ========== SIDEBAR OVERLAY ========== -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="main-content" id="mainContent">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-badge">
+        <span class="badge badge-sm badge-information">Complete Course</span>
+        <span class="badge badge-sm badge-grey">16 Chapters</span>
+      </div>
+      <h1 class="hero-title">Mathematics<br><span class="text-accent">High School to Calculus 1</span></h1>
+      <p class="hero-subtitle text-secondary">A comprehensive, self-paced learning guide covering everything from number systems and algebra through derivatives and integrals. Built for clarity.</p>
+      <div class="hero-actions flex gap-3">
+        <a href="#ch-number-systems" class="btn btn-md btn-primary">Start Learning</a>
+        <a href="#ch-limits" class="btn btn-md btn-outline">Jump to Calculus</a>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 1: NUMBER SYSTEMS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-number-systems">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 1</span>
+        <h2>Number Systems & Properties</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>The Real Number System</h3>
+        <p>Mathematics is built on numbers. Understanding the different types of numbers and how they relate to each other is the foundation of everything that follows.</p>
+
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>The <strong>real numbers</strong> (\(\mathbb{R}\)) include all numbers that can be represented on a number line. They consist of several nested subsets:</p>
+        </div>
+
+        <div class="concept-grid">
+          <div class="concept-item">
+            <div class="concept-icon bg-information">N</div>
+            <h4>Natural Numbers \(\mathbb{N}\)</h4>
+            <p>Counting numbers: \(1, 2, 3, 4, \ldots\)</p>
+            <p class="text-muted text-13px">Some definitions include 0.</p>
+          </div>
+          <div class="concept-item">
+            <div class="concept-icon bg-success">Z</div>
+            <h4>Integers \(\mathbb{Z}\)</h4>
+            <p>\(\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots\)</p>
+            <p class="text-muted text-13px">Naturals plus negatives and zero.</p>
+          </div>
+          <div class="concept-item">
+            <div class="concept-icon bg-warning">Q</div>
+            <h4>Rational Numbers \(\mathbb{Q}\)</h4>
+            <p>Numbers expressible as \(\frac{a}{b}\) where \(a, b \in \mathbb{Z}\) and \(b \neq 0\).</p>
+            <p class="text-muted text-13px">Examples: \(\frac{1}{2}, -\frac{3}{4}, 0.75\)</p>
+          </div>
+          <div class="concept-item">
+            <div class="concept-icon bg-danger">I</div>
+            <h4>Irrational Numbers</h4>
+            <p>Cannot be expressed as a ratio of integers.</p>
+            <p class="text-muted text-13px">Examples: \(\sqrt{2}, \pi, e\)</p>
+          </div>
+        </div>
+
+        <h3 class="mt-8">Properties of Real Numbers</h3>
+        <p>For all real numbers \(a, b, c\):</p>
+
+        <div class="table-wrapper">
+          <table class="kolosal-table">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Addition</th>
+                <th>Multiplication</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Commutative</strong></td>
+                <td>\(a + b = b + a\)</td>
+                <td>\(a \cdot b = b \cdot a\)</td>
+              </tr>
+              <tr>
+                <td><strong>Associative</strong></td>
+                <td>\((a + b) + c = a + (b + c)\)</td>
+                <td>\((a \cdot b) \cdot c = a \cdot (b \cdot c)\)</td>
+              </tr>
+              <tr>
+                <td><strong>Identity</strong></td>
+                <td>\(a + 0 = a\)</td>
+                <td>\(a \cdot 1 = a\)</td>
+              </tr>
+              <tr>
+                <td><strong>Inverse</strong></td>
+                <td>\(a + (-a) = 0\)</td>
+                <td>\(a \cdot \frac{1}{a} = 1\) (if \(a \neq 0\))</td>
+              </tr>
+              <tr>
+                <td><strong>Distributive</strong></td>
+                <td colspan="2">\(a \cdot (b + c) = a \cdot b + a \cdot c\)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-8">Absolute Value</h3>
+        <div class="formula-box">
+          <p>$$|x| = \begin{cases} x & \text{if } x \geq 0 \\ -x & \text{if } x < 0 \end{cases}$$</p>
+        </div>
+        <p>The absolute value of a number is its distance from zero on the number line. Key properties:</p>
+        <ul class="content-list">
+          <li>\(|x| \geq 0\) for all real \(x\)</li>
+          <li>\(|xy| = |x| \cdot |y|\)</li>
+          <li>\(|x + y| \leq |x| + |y|\) &nbsp;(Triangle Inequality)</li>
+        </ul>
+
+        <h3 class="mt-8">Exponent Rules</h3>
+        <p>For real numbers \(a, b\) and integers \(m, n\):</p>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-name">Product Rule</span>
+            <span class="rule-formula">\(a^m \cdot a^n = a^{m+n}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Quotient Rule</span>
+            <span class="rule-formula">\(\frac{a^m}{a^n} = a^{m-n}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Power Rule</span>
+            <span class="rule-formula">\((a^m)^n = a^{mn}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Zero Exponent</span>
+            <span class="rule-formula">\(a^0 = 1\) (if \(a \neq 0\))</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Negative Exponent</span>
+            <span class="rule-formula">\(a^{-n} = \frac{1}{a^n}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Fractional Exponent</span>
+            <span class="rule-formula">\(a^{m/n} = \sqrt[n]{a^m}\)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 2: ALGEBRA BASICS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-algebra-basics">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 2</span>
+        <h2>Algebra Basics</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Algebraic Expressions</h3>
+        <p>An algebraic expression is a combination of variables, constants, and operations. The building blocks:</p>
+
+        <div class="definition-box">
+          <div class="definition-label">Key Terms</div>
+          <ul class="content-list">
+            <li><strong>Variable:</strong> A symbol (usually a letter) representing an unknown quantity.</li>
+            <li><strong>Coefficient:</strong> The numerical factor of a term. In \(5x^2\), the coefficient is 5.</li>
+            <li><strong>Term:</strong> A product of numbers and variables, e.g., \(3x^2y\).</li>
+            <li><strong>Like terms:</strong> Terms with the same variable parts, e.g., \(3x^2\) and \(-7x^2\).</li>
+          </ul>
+        </div>
+
+        <h3 class="mt-8">Polynomial Operations</h3>
+
+        <h4>Addition and Subtraction</h4>
+        <p>Combine like terms:</p>
+        <div class="example-box">
+          <div class="example-label">Example</div>
+          <p>$$(3x^2 + 5x - 2) + (x^2 - 3x + 7) = 4x^2 + 2x + 5$$</p>
+          <p>$$(3x^2 + 5x - 2) - (x^2 - 3x + 7) = 2x^2 + 8x - 9$$</p>
+        </div>
+
+        <h4 class="mt-6">Multiplication</h4>
+        <p>Use the distributive property (FOIL for binomials):</p>
+        <div class="example-box">
+          <div class="example-label">Example</div>
+          <p>$$(2x + 3)(x - 4) = 2x^2 - 8x + 3x - 12 = 2x^2 - 5x - 12$$</p>
+        </div>
+
+        <h3 class="mt-8">Factoring Techniques</h3>
+        <p>Factoring reverses multiplication. Master these patterns:</p>
+
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-name">GCF</span>
+            <span class="rule-formula">\(ab + ac = a(b + c)\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Difference of Squares</span>
+            <span class="rule-formula">\(a^2 - b^2 = (a+b)(a-b)\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Perfect Square Trinomial</span>
+            <span class="rule-formula">\(a^2 \pm 2ab + b^2 = (a \pm b)^2\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Sum of Cubes</span>
+            <span class="rule-formula">\(a^3 + b^3 = (a+b)(a^2 - ab + b^2)\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Difference of Cubes</span>
+            <span class="rule-formula">\(a^3 - b^3 = (a-b)(a^2 + ab + b^2)\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Grouping</span>
+            <span class="rule-formula">Group terms and factor each group</span>
+          </div>
+        </div>
+
+        <h3 class="mt-8">The Binomial Theorem</h3>
+        <div class="formula-box">
+          <p>$$(a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^k$$</p>
+        </div>
+        <p>Where \(\binom{n}{k} = \frac{n!}{k!(n-k)!}\) is the binomial coefficient. The first few expansions:</p>
+        <div class="example-box">
+          <div class="example-label">Expansions</div>
+          <p>\((a+b)^2 = a^2 + 2ab + b^2\)</p>
+          <p>\((a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3\)</p>
+          <p>\((a+b)^4 = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4\)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 3: EQUATIONS & INEQUALITIES -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-equations">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 3</span>
+        <h2>Equations & Inequalities</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Linear Equations</h3>
+        <p>A linear equation in one variable has the form \(ax + b = 0\), solved by isolating \(x\):</p>
+        <div class="formula-box">
+          <p>$$ax + b = c \implies x = \frac{c - b}{a}, \quad a \neq 0$$</p>
+        </div>
+
+        <h3 class="mt-8">Quadratic Equations</h3>
+        <p>A quadratic equation has the standard form \(ax^2 + bx + c = 0\). Three main solving methods:</p>
+
+        <h4>1. Factoring</h4>
+        <div class="example-box">
+          <div class="example-label">Example</div>
+          <p>\(x^2 - 5x + 6 = 0\)</p>
+          <p>\((x-2)(x-3) = 0\)</p>
+          <p>\(x = 2\) or \(x = 3\)</p>
+        </div>
+
+        <h4 class="mt-6">2. Completing the Square</h4>
+        <div class="example-box">
+          <div class="example-label">Example</div>
+          <p>\(x^2 + 6x + 2 = 0\)</p>
+          <p>\(x^2 + 6x + 9 = 7\)</p>
+          <p>\((x+3)^2 = 7\)</p>
+          <p>\(x = -3 \pm \sqrt{7}\)</p>
+        </div>
+
+        <h4 class="mt-6">3. The Quadratic Formula</h4>
+        <div class="formula-box highlight">
+          <p>$$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$</p>
+        </div>
+
+        <div class="callout callout-info mt-4">
+          <div class="callout-title">The Discriminant</div>
+          <p>The expression \(\Delta = b^2 - 4ac\) determines the nature of the roots:</p>
+          <ul class="content-list">
+            <li>\(\Delta > 0\): Two distinct real roots</li>
+            <li>\(\Delta = 0\): One repeated real root</li>
+            <li>\(\Delta < 0\): Two complex conjugate roots (no real solutions)</li>
+          </ul>
+        </div>
+
+        <h3 class="mt-8">Systems of Equations</h3>
+        <p>A system of linear equations can be solved by substitution or elimination:</p>
+        <div class="example-box">
+          <div class="example-label">Example (Elimination)</div>
+          <p>$$\begin{cases} 2x + 3y = 12 \\ x - y = 1 \end{cases}$$</p>
+          <p>Multiply the second equation by 3: \(3x - 3y = 3\)</p>
+          <p>Add to the first: \(5x = 15 \implies x = 3\)</p>
+          <p>Back-substitute: \(3 - y = 1 \implies y = 2\)</p>
+          <p>Solution: \((3, 2)\)</p>
+        </div>
+
+        <h3 class="mt-8">Inequalities</h3>
+        <p>Solving inequalities is like solving equations, with one critical rule:</p>
+        <div class="callout callout-warning">
+          <div class="callout-title">Important Rule</div>
+          <p>When you <strong>multiply or divide</strong> both sides of an inequality by a <strong>negative number</strong>, you must <strong>flip the inequality sign</strong>.</p>
+        </div>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Example</div>
+          <p>\(-2x + 5 > 11\)</p>
+          <p>\(-2x > 6\)</p>
+          <p>\(x < -3\) &nbsp;&nbsp;(sign flipped)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 4: FUNCTIONS & GRAPHS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-functions-intro">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 4</span>
+        <h2>Functions & Graphs</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>What Is a Function?</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>A <strong>function</strong> \(f: A \to B\) is a rule that assigns to each element \(x\) in the set \(A\) (the domain) exactly one element \(f(x)\) in the set \(B\) (the codomain).</p>
+        </div>
+
+        <p>Key vocabulary:</p>
+        <ul class="content-list">
+          <li><strong>Domain:</strong> The set of all valid inputs \(x\).</li>
+          <li><strong>Range:</strong> The set of all outputs \(f(x)\) actually produced.</li>
+          <li><strong>Vertical Line Test:</strong> A graph represents a function if and only if every vertical line crosses the graph at most once.</li>
+        </ul>
+
+        <h3 class="mt-8">Function Notation</h3>
+        <p>If \(f(x) = x^2 + 3x - 1\), then:</p>
+        <div class="example-box">
+          <div class="example-label">Evaluating</div>
+          <p>\(f(2) = 4 + 6 - 1 = 9\)</p>
+          <p>\(f(-1) = 1 - 3 - 1 = -3\)</p>
+          <p>\(f(a+h) = (a+h)^2 + 3(a+h) - 1 = a^2 + 2ah + h^2 + 3a + 3h - 1\)</p>
+        </div>
+
+        <h3 class="mt-8">Transformations of Functions</h3>
+        <p>Starting from the graph of \(y = f(x)\):</p>
+
+        <div class="table-wrapper">
+          <table class="kolosal-table">
+            <thead>
+              <tr>
+                <th>Transformation</th>
+                <th>Equation</th>
+                <th>Effect</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Vertical shift up</td><td>\(y = f(x) + k\)</td><td>Shifts graph up by \(k\)</td></tr>
+              <tr><td>Vertical shift down</td><td>\(y = f(x) - k\)</td><td>Shifts graph down by \(k\)</td></tr>
+              <tr><td>Horizontal shift right</td><td>\(y = f(x - h)\)</td><td>Shifts graph right by \(h\)</td></tr>
+              <tr><td>Horizontal shift left</td><td>\(y = f(x + h)\)</td><td>Shifts graph left by \(h\)</td></tr>
+              <tr><td>Vertical stretch</td><td>\(y = af(x)\), \(a > 1\)</td><td>Stretches vertically</td></tr>
+              <tr><td>Vertical compression</td><td>\(y = af(x)\), \(0 < a < 1\)</td><td>Compresses vertically</td></tr>
+              <tr><td>Reflection over x-axis</td><td>\(y = -f(x)\)</td><td>Flips upside down</td></tr>
+              <tr><td>Reflection over y-axis</td><td>\(y = f(-x)\)</td><td>Flips left-right</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-8">Composition & Inverse</h3>
+        <div class="formula-box">
+          <p><strong>Composition:</strong> \((f \circ g)(x) = f(g(x))\)</p>
+        </div>
+        <div class="formula-box mt-3">
+          <p><strong>Inverse:</strong> If \(f(a) = b\), then \(f^{-1}(b) = a\). That is, \(f(f^{-1}(x)) = x\).</p>
+        </div>
+        <p class="mt-3">To find \(f^{-1}\): write \(y = f(x)\), swap \(x\) and \(y\), then solve for \(y\).</p>
+        <div class="example-box mt-3">
+          <div class="example-label">Example</div>
+          <p>\(f(x) = 2x + 5\)</p>
+          <p>Swap: \(x = 2y + 5\)</p>
+          <p>Solve: \(y = \frac{x - 5}{2}\)</p>
+          <p>So \(f^{-1}(x) = \frac{x-5}{2}\)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 5: LINEAR & QUADRATIC FUNCTIONS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-linear-quadratic">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 5</span>
+        <h2>Linear & Quadratic Functions</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Linear Functions</h3>
+        <div class="formula-box">
+          <p><strong>Slope-Intercept Form:</strong> \(y = mx + b\)</p>
+          <p class="mt-2"><strong>Point-Slope Form:</strong> \(y - y_1 = m(x - x_1)\)</p>
+          <p class="mt-2"><strong>Slope:</strong> \(m = \frac{y_2 - y_1}{x_2 - x_1}\)</p>
+        </div>
+        <ul class="content-list mt-4">
+          <li>Parallel lines have equal slopes: \(m_1 = m_2\)</li>
+          <li>Perpendicular lines have negative reciprocal slopes: \(m_1 \cdot m_2 = -1\)</li>
+        </ul>
+
+        <h3 class="mt-8">Quadratic Functions</h3>
+        <div class="formula-box">
+          <p><strong>Standard Form:</strong> \(f(x) = ax^2 + bx + c\)</p>
+          <p class="mt-2"><strong>Vertex Form:</strong> \(f(x) = a(x - h)^2 + k\), vertex at \((h, k)\)</p>
+          <p class="mt-2"><strong>Vertex from Standard Form:</strong> \(h = -\frac{b}{2a}\), \(k = f(h)\)</p>
+        </div>
+
+        <div class="callout callout-info mt-4">
+          <div class="callout-title">Parabola Properties</div>
+          <ul class="content-list">
+            <li>If \(a > 0\): parabola opens <strong>upward</strong>, vertex is a minimum.</li>
+            <li>If \(a < 0\): parabola opens <strong>downward</strong>, vertex is a maximum.</li>
+            <li>Axis of symmetry: the vertical line \(x = h\).</li>
+          </ul>
+        </div>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Example</div>
+          <p>Find the vertex of \(f(x) = 2x^2 - 12x + 7\).</p>
+          <p>\(h = -\frac{-12}{2(2)} = 3\)</p>
+          <p>\(k = 2(9) - 12(3) + 7 = 18 - 36 + 7 = -11\)</p>
+          <p>Vertex: \((3, -11)\). The minimum value is \(-11\).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 6: POLYNOMIAL & RATIONAL FUNCTIONS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-polynomial">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 6</span>
+        <h2>Polynomial & Rational Functions</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Polynomials</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>A polynomial of degree \(n\) is: \(P(x) = a_nx^n + a_{n-1}x^{n-1} + \cdots + a_1x + a_0\) where \(a_n \neq 0\).</p>
+        </div>
+
+        <h4 class="mt-6">End Behavior</h4>
+        <div class="table-wrapper">
+          <table class="kolosal-table">
+            <thead>
+              <tr><th>Degree</th><th>Leading Coeff.</th><th>Left End</th><th>Right End</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Even</td><td>Positive</td><td>\(\uparrow\)</td><td>\(\uparrow\)</td></tr>
+              <tr><td>Even</td><td>Negative</td><td>\(\downarrow\)</td><td>\(\downarrow\)</td></tr>
+              <tr><td>Odd</td><td>Positive</td><td>\(\downarrow\)</td><td>\(\uparrow\)</td></tr>
+              <tr><td>Odd</td><td>Negative</td><td>\(\uparrow\)</td><td>\(\downarrow\)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-info mt-4">
+          <div class="callout-title">Fundamental Theorem of Algebra</div>
+          <p>A polynomial of degree \(n\) has exactly \(n\) roots (counting multiplicity) in the complex numbers.</p>
+        </div>
+
+        <h4 class="mt-6">Remainder & Factor Theorems</h4>
+        <ul class="content-list">
+          <li><strong>Remainder Theorem:</strong> When \(P(x)\) is divided by \((x - c)\), the remainder is \(P(c)\).</li>
+          <li><strong>Factor Theorem:</strong> \((x - c)\) is a factor of \(P(x)\) if and only if \(P(c) = 0\).</li>
+        </ul>
+
+        <h3 class="mt-8">Rational Functions</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>A rational function is \(f(x) = \frac{P(x)}{Q(x)}\) where \(P\) and \(Q\) are polynomials and \(Q(x) \neq 0\).</p>
+        </div>
+
+        <h4 class="mt-6">Asymptotes</h4>
+        <ul class="content-list">
+          <li><strong>Vertical asymptote</strong> at \(x = a\) if \(Q(a) = 0\) but \(P(a) \neq 0\).</li>
+          <li><strong>Horizontal asymptote:</strong>
+            <ul>
+              <li>If \(\deg(P) < \deg(Q)\): \(y = 0\)</li>
+              <li>If \(\deg(P) = \deg(Q)\): \(y = \frac{\text{leading coeff of } P}{\text{leading coeff of } Q}\)</li>
+              <li>If \(\deg(P) > \deg(Q)\): no horizontal asymptote (oblique asymptote possible)</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 7: EXPONENTIAL & LOGARITHMIC -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-exponential-log">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 7</span>
+        <h2>Exponential & Logarithmic Functions</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Exponential Functions</h3>
+        <div class="formula-box">
+          <p>$$f(x) = a \cdot b^x, \quad b > 0, \; b \neq 1$$</p>
+        </div>
+        <ul class="content-list">
+          <li>If \(b > 1\): exponential <strong>growth</strong></li>
+          <li>If \(0 < b < 1\): exponential <strong>decay</strong></li>
+          <li>The natural exponential function: \(f(x) = e^x\) where \(e \approx 2.71828\)</li>
+        </ul>
+
+        <h3 class="mt-8">Logarithmic Functions</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>\(\log_b(x) = y\) means \(b^y = x\). The logarithm is the <strong>inverse</strong> of exponentiation.</p>
+        </div>
+
+        <p class="mt-4">Special logarithms:</p>
+        <ul class="content-list">
+          <li>\(\log(x) = \log_{10}(x)\) — common logarithm</li>
+          <li>\(\ln(x) = \log_e(x)\) — natural logarithm</li>
+        </ul>
+
+        <h3 class="mt-8">Logarithm Properties</h3>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-name">Product Rule</span>
+            <span class="rule-formula">\(\log_b(MN) = \log_b M + \log_b N\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Quotient Rule</span>
+            <span class="rule-formula">\(\log_b\!\left(\frac{M}{N}\right) = \log_b M - \log_b N\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Power Rule</span>
+            <span class="rule-formula">\(\log_b(M^p) = p \cdot \log_b M\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Change of Base</span>
+            <span class="rule-formula">\(\log_b x = \frac{\ln x}{\ln b}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Identity</span>
+            <span class="rule-formula">\(\log_b(b^x) = x\) and \(b^{\log_b x} = x\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Special Values</span>
+            <span class="rule-formula">\(\log_b 1 = 0\) and \(\log_b b = 1\)</span>
+          </div>
+        </div>
+
+        <div class="example-box mt-6">
+          <div class="example-label">Solving Exponential Equations</div>
+          <p>Solve \(3^{2x+1} = 27\):</p>
+          <p>\(3^{2x+1} = 3^3\)</p>
+          <p>\(2x + 1 = 3\)</p>
+          <p>\(x = 1\)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 8: TRIGONOMETRIC FUNCTIONS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-trig-basics">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 8</span>
+        <h2>Trigonometric Functions</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Right Triangle Definitions</h3>
+        <p>For an angle \(\theta\) in a right triangle with sides opposite (\(O\)), adjacent (\(A\)), and hypotenuse (\(H\)):</p>
+        <div class="rules-grid three-col">
+          <div class="rule-item">
+            <span class="rule-name">Sine</span>
+            <span class="rule-formula">\(\sin\theta = \frac{O}{H}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Cosine</span>
+            <span class="rule-formula">\(\cos\theta = \frac{A}{H}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Tangent</span>
+            <span class="rule-formula">\(\tan\theta = \frac{O}{A}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Cosecant</span>
+            <span class="rule-formula">\(\csc\theta = \frac{H}{O}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Secant</span>
+            <span class="rule-formula">\(\sec\theta = \frac{H}{A}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Cotangent</span>
+            <span class="rule-formula">\(\cot\theta = \frac{A}{O}\)</span>
+          </div>
+        </div>
+
+        <h3 class="mt-8">The Unit Circle</h3>
+        <p>On the unit circle (radius = 1), for angle \(\theta\):</p>
+        <div class="formula-box">
+          <p>$$(\cos\theta, \sin\theta) = \text{coordinates of the point on the circle}$$</p>
+        </div>
+
+        <h4 class="mt-6">Key Angles</h4>
+        <div class="table-wrapper">
+          <table class="kolosal-table">
+            <thead>
+              <tr><th>Degrees</th><th>Radians</th><th>\(\sin\)</th><th>\(\cos\)</th><th>\(\tan\)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0</td><td>\(0\)</td><td>\(0\)</td><td>\(1\)</td><td>\(0\)</td></tr>
+              <tr><td>30</td><td>\(\frac{\pi}{6}\)</td><td>\(\frac{1}{2}\)</td><td>\(\frac{\sqrt{3}}{2}\)</td><td>\(\frac{\sqrt{3}}{3}\)</td></tr>
+              <tr><td>45</td><td>\(\frac{\pi}{4}\)</td><td>\(\frac{\sqrt{2}}{2}\)</td><td>\(\frac{\sqrt{2}}{2}\)</td><td>\(1\)</td></tr>
+              <tr><td>60</td><td>\(\frac{\pi}{3}\)</td><td>\(\frac{\sqrt{3}}{2}\)</td><td>\(\frac{1}{2}\)</td><td>\(\sqrt{3}\)</td></tr>
+              <tr><td>90</td><td>\(\frac{\pi}{2}\)</td><td>\(1\)</td><td>\(0\)</td><td>undef.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-8">Radian-Degree Conversion</h3>
+        <div class="formula-box">
+          <p>$$\text{radians} = \text{degrees} \times \frac{\pi}{180} \qquad \text{degrees} = \text{radians} \times \frac{180}{\pi}$$</p>
+        </div>
+
+        <h3 class="mt-8">Graphs of Sine and Cosine</h3>
+        <p>For \(y = A\sin(Bx - C) + D\) or \(y = A\cos(Bx - C) + D\):</p>
+        <ul class="content-list">
+          <li><strong>Amplitude:</strong> \(|A|\)</li>
+          <li><strong>Period:</strong> \(\frac{2\pi}{|B|}\)</li>
+          <li><strong>Phase shift:</strong> \(\frac{C}{B}\)</li>
+          <li><strong>Vertical shift:</strong> \(D\)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 9: TRIG IDENTITIES -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-trig-identities">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 9</span>
+        <h2>Trigonometric Identities & Equations</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Fundamental Identities</h3>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-name">Pythagorean</span>
+            <span class="rule-formula">\(\sin^2\theta + \cos^2\theta = 1\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Pythagorean (tan)</span>
+            <span class="rule-formula">\(1 + \tan^2\theta = \sec^2\theta\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Pythagorean (cot)</span>
+            <span class="rule-formula">\(1 + \cot^2\theta = \csc^2\theta\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Reciprocal</span>
+            <span class="rule-formula">\(\csc\theta = \frac{1}{\sin\theta}\), \(\sec\theta = \frac{1}{\cos\theta}\)</span>
+          </div>
+        </div>
+
+        <h3 class="mt-8">Sum & Difference Formulas</h3>
+        <div class="formula-box">
+          <p>\(\sin(\alpha \pm \beta) = \sin\alpha\cos\beta \pm \cos\alpha\sin\beta\)</p>
+          <p class="mt-2">\(\cos(\alpha \pm \beta) = \cos\alpha\cos\beta \mp \sin\alpha\sin\beta\)</p>
+          <p class="mt-2">\(\tan(\alpha \pm \beta) = \frac{\tan\alpha \pm \tan\beta}{1 \mp \tan\alpha\tan\beta}\)</p>
+        </div>
+
+        <h3 class="mt-8">Double Angle Formulas</h3>
+        <div class="formula-box">
+          <p>\(\sin 2\theta = 2\sin\theta\cos\theta\)</p>
+          <p class="mt-2">\(\cos 2\theta = \cos^2\theta - \sin^2\theta = 2\cos^2\theta - 1 = 1 - 2\sin^2\theta\)</p>
+          <p class="mt-2">\(\tan 2\theta = \frac{2\tan\theta}{1 - \tan^2\theta}\)</p>
+        </div>
+
+        <h3 class="mt-8">Half Angle Formulas</h3>
+        <div class="formula-box">
+          <p>\(\sin\frac{\theta}{2} = \pm\sqrt{\frac{1 - \cos\theta}{2}}\)</p>
+          <p class="mt-2">\(\cos\frac{\theta}{2} = \pm\sqrt{\frac{1 + \cos\theta}{2}}\)</p>
+        </div>
+
+        <h3 class="mt-8">Law of Sines & Cosines</h3>
+        <div class="formula-box">
+          <p><strong>Law of Sines:</strong> \(\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}\)</p>
+          <p class="mt-2"><strong>Law of Cosines:</strong> \(c^2 = a^2 + b^2 - 2ab\cos C\)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 10: LIMITS & CONTINUITY -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-limits">
+      <div class="chapter-header">
+        <div class="chapter-divider">
+          <span class="badge badge-md badge-information">Calculus 1 Begins</span>
+        </div>
+        <span class="chapter-number">Chapter 10</span>
+        <h2>Limits & Continuity</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Intuitive Definition of a Limit</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>We write \(\displaystyle\lim_{x \to a} f(x) = L\) if the values of \(f(x)\) get arbitrarily close to \(L\) as \(x\) approaches \(a\) (from both sides), without necessarily equaling \(a\).</p>
+        </div>
+
+        <h3 class="mt-8">Limit Laws</h3>
+        <p>If \(\displaystyle\lim_{x \to a} f(x) = L\) and \(\displaystyle\lim_{x \to a} g(x) = M\), then:</p>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-name">Sum</span>
+            <span class="rule-formula">\(\lim[f(x) + g(x)] = L + M\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Product</span>
+            <span class="rule-formula">\(\lim[f(x) \cdot g(x)] = L \cdot M\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Quotient</span>
+            <span class="rule-formula">\(\lim\frac{f(x)}{g(x)} = \frac{L}{M}\) if \(M \neq 0\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Constant Multiple</span>
+            <span class="rule-formula">\(\lim[c \cdot f(x)] = c \cdot L\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Power</span>
+            <span class="rule-formula">\(\lim[f(x)]^n = L^n\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Root</span>
+            <span class="rule-formula">\(\lim\sqrt[n]{f(x)} = \sqrt[n]{L}\)</span>
+          </div>
+        </div>
+
+        <h3 class="mt-8">Evaluating Limits</h3>
+        <h4>Direct Substitution</h4>
+        <p>If \(f\) is continuous at \(a\), then \(\lim_{x \to a} f(x) = f(a)\).</p>
+
+        <h4 class="mt-6">Algebraic Techniques</h4>
+        <p>When direct substitution gives \(\frac{0}{0}\), try:</p>
+        <ol class="content-list">
+          <li><strong>Factor and cancel</strong></li>
+          <li><strong>Rationalize</strong> (multiply by conjugate)</li>
+          <li><strong>Simplify</strong> complex fractions</li>
+        </ol>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Example</div>
+          <p>$$\lim_{x \to 3} \frac{x^2 - 9}{x - 3} = \lim_{x \to 3} \frac{(x-3)(x+3)}{x-3} = \lim_{x \to 3}(x+3) = 6$$</p>
+        </div>
+
+        <h3 class="mt-8">Important Special Limits</h3>
+        <div class="formula-box highlight">
+          <p>$$\lim_{x \to 0} \frac{\sin x}{x} = 1 \qquad \lim_{x \to 0} \frac{1 - \cos x}{x} = 0$$</p>
+          <p class="mt-2">$$\lim_{x \to \infty}\left(1 + \frac{1}{x}\right)^x = e \qquad \lim_{x \to 0}\frac{e^x - 1}{x} = 1$$</p>
+        </div>
+
+        <h3 class="mt-8">One-Sided Limits</h3>
+        <ul class="content-list">
+          <li>\(\displaystyle\lim_{x \to a^+} f(x)\): limit from the right</li>
+          <li>\(\displaystyle\lim_{x \to a^-} f(x)\): limit from the left</li>
+          <li>The two-sided limit exists if and only if both one-sided limits exist and are equal.</li>
+        </ul>
+
+        <h3 class="mt-8">Continuity</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>A function \(f\) is <strong>continuous at \(x = a\)</strong> if all three conditions hold:</p>
+          <ol class="content-list">
+            <li>\(f(a)\) is defined</li>
+            <li>\(\displaystyle\lim_{x \to a} f(x)\) exists</li>
+            <li>\(\displaystyle\lim_{x \to a} f(x) = f(a)\)</li>
+          </ol>
+        </div>
+
+        <div class="callout callout-info mt-4">
+          <div class="callout-title">Intermediate Value Theorem (IVT)</div>
+          <p>If \(f\) is continuous on \([a, b]\) and \(N\) is any number between \(f(a)\) and \(f(b)\), then there exists at least one \(c \in (a, b)\) such that \(f(c) = N\).</p>
+        </div>
+
+        <h3 class="mt-8">The Squeeze Theorem</h3>
+        <div class="formula-box">
+          <p>If \(g(x) \leq f(x) \leq h(x)\) near \(a\), and \(\displaystyle\lim_{x \to a} g(x) = \lim_{x \to a} h(x) = L\), then \(\displaystyle\lim_{x \to a} f(x) = L\).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 11: DERIVATIVES -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-derivatives">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 11</span>
+        <h2>Derivatives</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>The Derivative as a Limit</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>The <strong>derivative</strong> of \(f\) at \(x\) is:</p>
+          <p>$$f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$</p>
+          <p>provided this limit exists.</p>
+        </div>
+
+        <p class="mt-4">Alternative notation: \(\frac{dy}{dx}\), \(\frac{df}{dx}\), \(Df(x)\), \(\dot{y}\)</p>
+
+        <h3 class="mt-8">Geometric Interpretation</h3>
+        <p>The derivative \(f'(a)\) is the <strong>slope of the tangent line</strong> to \(y = f(x)\) at the point \((a, f(a))\).</p>
+        <div class="formula-box">
+          <p><strong>Tangent line equation:</strong> \(y - f(a) = f'(a)(x - a)\)</p>
+        </div>
+
+        <h3 class="mt-8">Computing a Derivative from the Definition</h3>
+        <div class="example-box">
+          <div class="example-label">Example</div>
+          <p>Find \(f'(x)\) for \(f(x) = x^2\):</p>
+          <p>$$f'(x) = \lim_{h \to 0}\frac{(x+h)^2 - x^2}{h} = \lim_{h \to 0}\frac{x^2 + 2xh + h^2 - x^2}{h}$$</p>
+          <p>$$= \lim_{h \to 0}\frac{2xh + h^2}{h} = \lim_{h \to 0}(2x + h) = 2x$$</p>
+        </div>
+
+        <h3 class="mt-8">Differentiability and Continuity</h3>
+        <div class="callout callout-warning">
+          <div class="callout-title">Key Theorem</div>
+          <p>If \(f\) is differentiable at \(a\), then \(f\) is continuous at \(a\). The converse is <strong>not true</strong> — continuity does not guarantee differentiability (e.g., \(f(x) = |x|\) at \(x = 0\)).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 12: DIFFERENTIATION RULES -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-diff-rules">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 12</span>
+        <h2>Differentiation Rules</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Basic Rules</h3>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-name">Constant</span>
+            <span class="rule-formula">\(\frac{d}{dx}[c] = 0\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Power Rule</span>
+            <span class="rule-formula">\(\frac{d}{dx}[x^n] = nx^{n-1}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Constant Multiple</span>
+            <span class="rule-formula">\(\frac{d}{dx}[cf(x)] = cf'(x)\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Sum / Difference</span>
+            <span class="rule-formula">\(\frac{d}{dx}[f \pm g] = f' \pm g'\)</span>
+          </div>
+        </div>
+
+        <h3 class="mt-8">Product & Quotient Rules</h3>
+        <div class="formula-box highlight">
+          <p><strong>Product Rule:</strong> \(\frac{d}{dx}[f(x)g(x)] = f'(x)g(x) + f(x)g'(x)\)</p>
+          <p class="mt-3"><strong>Quotient Rule:</strong> \(\frac{d}{dx}\left[\frac{f(x)}{g(x)}\right] = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]^2}\)</p>
+        </div>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Product Rule Example</div>
+          <p>Find \(\frac{d}{dx}[x^2 \sin x]\):</p>
+          <p>\(= 2x\sin x + x^2\cos x\)</p>
+        </div>
+
+        <h3 class="mt-8">Chain Rule</h3>
+        <div class="formula-box highlight">
+          <p>$$\frac{d}{dx}[f(g(x))] = f'(g(x)) \cdot g'(x)$$</p>
+          <p class="text-muted mt-2">In Leibniz notation: \(\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}\)</p>
+        </div>
+        <div class="example-box mt-4">
+          <div class="example-label">Example</div>
+          <p>Find \(\frac{d}{dx}[\sin(3x^2)]\):</p>
+          <p>Outer: \(\sin(u) \to \cos(u)\). Inner: \(u = 3x^2 \to 6x\).</p>
+          <p>\(= \cos(3x^2) \cdot 6x = 6x\cos(3x^2)\)</p>
+        </div>
+
+        <h3 class="mt-8">Derivatives of Common Functions</h3>
+        <div class="table-wrapper">
+          <table class="kolosal-table">
+            <thead>
+              <tr><th>\(f(x)\)</th><th>\(f'(x)\)</th><th>\(f(x)\)</th><th>\(f'(x)\)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>\(\sin x\)</td><td>\(\cos x\)</td><td>\(\cos x\)</td><td>\(-\sin x\)</td></tr>
+              <tr><td>\(\tan x\)</td><td>\(\sec^2 x\)</td><td>\(\cot x\)</td><td>\(-\csc^2 x\)</td></tr>
+              <tr><td>\(\sec x\)</td><td>\(\sec x\tan x\)</td><td>\(\csc x\)</td><td>\(-\csc x\cot x\)</td></tr>
+              <tr><td>\(e^x\)</td><td>\(e^x\)</td><td>\(a^x\)</td><td>\(a^x\ln a\)</td></tr>
+              <tr><td>\(\ln x\)</td><td>\(\frac{1}{x}\)</td><td>\(\log_a x\)</td><td>\(\frac{1}{x\ln a}\)</td></tr>
+              <tr><td>\(\arcsin x\)</td><td>\(\frac{1}{\sqrt{1-x^2}}\)</td><td>\(\arctan x\)</td><td>\(\frac{1}{1+x^2}\)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-8">Implicit Differentiation</h3>
+        <p>When \(y\) is defined implicitly by an equation involving \(x\) and \(y\), differentiate both sides with respect to \(x\), treating \(y\) as a function of \(x\) (apply the chain rule to terms involving \(y\)).</p>
+        <div class="example-box mt-4">
+          <div class="example-label">Example</div>
+          <p>Find \(\frac{dy}{dx}\) for \(x^2 + y^2 = 25\):</p>
+          <p>\(2x + 2y\frac{dy}{dx} = 0\)</p>
+          <p>\(\frac{dy}{dx} = -\frac{x}{y}\)</p>
+        </div>
+
+        <h3 class="mt-8">Logarithmic Differentiation</h3>
+        <p>Useful for functions of the form \(y = [f(x)]^{g(x)}\):</p>
+        <ol class="content-list">
+          <li>Take \(\ln\) of both sides</li>
+          <li>Differentiate implicitly</li>
+          <li>Solve for \(\frac{dy}{dx}\)</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 13: APPLICATIONS OF DERIVATIVES -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-applications-deriv">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 13</span>
+        <h2>Applications of Derivatives</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Related Rates</h3>
+        <p>Strategy for related rates problems:</p>
+        <ol class="content-list">
+          <li>Draw a diagram and identify all variables.</li>
+          <li>Write an equation relating the variables.</li>
+          <li>Differentiate both sides with respect to time \(t\).</li>
+          <li>Substitute known values and solve for the unknown rate.</li>
+        </ol>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Classic Example</div>
+          <p>A ladder 10 ft long leans against a wall. The base slides away at 2 ft/s. How fast is the top sliding down when the base is 6 ft from the wall?</p>
+          <p>\(x^2 + y^2 = 100\)</p>
+          <p>\(2x\frac{dx}{dt} + 2y\frac{dy}{dt} = 0\)</p>
+          <p>When \(x = 6\): \(y = 8\), so \(2(6)(2) + 2(8)\frac{dy}{dt} = 0\)</p>
+          <p>\(\frac{dy}{dt} = -\frac{3}{2}\) ft/s (sliding down)</p>
+        </div>
+
+        <h3 class="mt-8">Extrema (Maximum & Minimum Values)</h3>
+        <div class="definition-box">
+          <div class="definition-label">Critical Points</div>
+          <p>A <strong>critical point</strong> of \(f\) occurs at \(x = c\) if \(f'(c) = 0\) or \(f'(c)\) does not exist (but \(f(c)\) is defined).</p>
+        </div>
+
+        <h4 class="mt-6">First Derivative Test</h4>
+        <ul class="content-list">
+          <li>If \(f'\) changes from \(+\) to \(-\) at \(c\): local <strong>maximum</strong></li>
+          <li>If \(f'\) changes from \(-\) to \(+\) at \(c\): local <strong>minimum</strong></li>
+          <li>If \(f'\) doesn't change sign: neither</li>
+        </ul>
+
+        <h4 class="mt-6">Second Derivative Test</h4>
+        <p>At a critical point where \(f'(c) = 0\):</p>
+        <ul class="content-list">
+          <li>If \(f''(c) > 0\): local minimum (concave up)</li>
+          <li>If \(f''(c) < 0\): local maximum (concave down)</li>
+          <li>If \(f''(c) = 0\): test is inconclusive</li>
+        </ul>
+
+        <h3 class="mt-8">Concavity & Inflection Points</h3>
+        <ul class="content-list">
+          <li>\(f''(x) > 0\): graph is <strong>concave up</strong> (holds water)</li>
+          <li>\(f''(x) < 0\): graph is <strong>concave down</strong> (spills water)</li>
+          <li><strong>Inflection point:</strong> where concavity changes (where \(f'' = 0\) or undefined, and sign changes)</li>
+        </ul>
+
+        <h3 class="mt-8">Optimization</h3>
+        <p>Strategy for optimization problems:</p>
+        <ol class="content-list">
+          <li>Identify the quantity to optimize and write it as a function of one variable.</li>
+          <li>Find the domain (constraints).</li>
+          <li>Find critical points (\(f' = 0\)).</li>
+          <li>Evaluate \(f\) at critical points and endpoints to find the absolute max/min.</li>
+        </ol>
+
+        <h3 class="mt-8">L'Hopital's Rule</h3>
+        <div class="formula-box highlight">
+          <p>If \(\displaystyle\lim_{x \to a}\frac{f(x)}{g(x)}\) gives \(\frac{0}{0}\) or \(\frac{\pm\infty}{\pm\infty}\), then:</p>
+          <p>$$\lim_{x \to a}\frac{f(x)}{g(x)} = \lim_{x \to a}\frac{f'(x)}{g'(x)}$$</p>
+          <p class="text-muted">(provided the right-hand limit exists)</p>
+        </div>
+
+        <h3 class="mt-8">Mean Value Theorem</h3>
+        <div class="callout callout-info">
+          <div class="callout-title">Mean Value Theorem (MVT)</div>
+          <p>If \(f\) is continuous on \([a,b]\) and differentiable on \((a,b)\), then there exists at least one \(c \in (a,b)\) such that:</p>
+          <p>$$f'(c) = \frac{f(b) - f(a)}{b - a}$$</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 14: INTEGRALS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-integrals">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 14</span>
+        <h2>Integrals</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Antiderivatives</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>An <strong>antiderivative</strong> of \(f(x)\) is a function \(F(x)\) such that \(F'(x) = f(x)\). The most general antiderivative is \(F(x) + C\), where \(C\) is an arbitrary constant.</p>
+        </div>
+
+        <h3 class="mt-8">Basic Integration Rules</h3>
+        <div class="table-wrapper">
+          <table class="kolosal-table">
+            <thead>
+              <tr><th>Function</th><th>Antiderivative</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>\(x^n\) (\(n \neq -1\))</td><td>\(\frac{x^{n+1}}{n+1} + C\)</td></tr>
+              <tr><td>\(\frac{1}{x}\)</td><td>\(\ln|x| + C\)</td></tr>
+              <tr><td>\(e^x\)</td><td>\(e^x + C\)</td></tr>
+              <tr><td>\(a^x\)</td><td>\(\frac{a^x}{\ln a} + C\)</td></tr>
+              <tr><td>\(\sin x\)</td><td>\(-\cos x + C\)</td></tr>
+              <tr><td>\(\cos x\)</td><td>\(\sin x + C\)</td></tr>
+              <tr><td>\(\sec^2 x\)</td><td>\(\tan x + C\)</td></tr>
+              <tr><td>\(\csc^2 x\)</td><td>\(-\cot x + C\)</td></tr>
+              <tr><td>\(\sec x\tan x\)</td><td>\(\sec x + C\)</td></tr>
+              <tr><td>\(\frac{1}{\sqrt{1-x^2}}\)</td><td>\(\arcsin x + C\)</td></tr>
+              <tr><td>\(\frac{1}{1+x^2}\)</td><td>\(\arctan x + C\)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-8">The Definite Integral</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition (Riemann Sum)</div>
+          <p>$$\int_a^b f(x)\,dx = \lim_{n \to \infty}\sum_{i=1}^n f(x_i^*)\Delta x$$</p>
+          <p>where \(\Delta x = \frac{b-a}{n}\) and \(x_i^*\) is a sample point in the \(i\)-th subinterval.</p>
+        </div>
+
+        <h4 class="mt-6">Properties of Definite Integrals</h4>
+        <ul class="content-list">
+          <li>\(\displaystyle\int_a^a f(x)\,dx = 0\)</li>
+          <li>\(\displaystyle\int_a^b f(x)\,dx = -\int_b^a f(x)\,dx\)</li>
+          <li>\(\displaystyle\int_a^b [f(x) + g(x)]\,dx = \int_a^b f(x)\,dx + \int_a^b g(x)\,dx\)</li>
+          <li>\(\displaystyle\int_a^b cf(x)\,dx = c\int_a^b f(x)\,dx\)</li>
+          <li>\(\displaystyle\int_a^b f(x)\,dx = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx\)</li>
+        </ul>
+
+        <h3 class="mt-8">U-Substitution</h3>
+        <div class="formula-box highlight">
+          <p>$$\int f(g(x))g'(x)\,dx = \int f(u)\,du \quad \text{where } u = g(x)$$</p>
+        </div>
+        <div class="example-box mt-4">
+          <div class="example-label">Example</div>
+          <p>\(\displaystyle\int 2x\cos(x^2)\,dx\)</p>
+          <p>Let \(u = x^2\), so \(du = 2x\,dx\)</p>
+          <p>\(= \displaystyle\int \cos u\,du = \sin u + C = \sin(x^2) + C\)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 15: FUNDAMENTAL THEOREM OF CALCULUS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-ftc">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 15</span>
+        <h2>Fundamental Theorem of Calculus</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Part 1 (FTC1)</h3>
+        <div class="formula-box highlight">
+          <p>If \(f\) is continuous on \([a, b]\), then the function</p>
+          <p>$$g(x) = \int_a^x f(t)\,dt$$</p>
+          <p>is continuous on \([a, b]\), differentiable on \((a, b)\), and \(g'(x) = f(x)\).</p>
+        </div>
+        <p class="mt-3">In other words: the derivative of the integral (with a variable upper limit) gives back the original function.</p>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Example</div>
+          <p>$$\frac{d}{dx}\int_1^x t^3\,dt = x^3$$</p>
+          <p>With the chain rule: \(\displaystyle\frac{d}{dx}\int_0^{x^2}\sin t\,dt = \sin(x^2) \cdot 2x\)</p>
+        </div>
+
+        <h3 class="mt-8">Part 2 (FTC2) — The Evaluation Theorem</h3>
+        <div class="formula-box highlight">
+          <p>If \(f\) is continuous on \([a, b]\) and \(F\) is any antiderivative of \(f\), then:</p>
+          <p>$$\int_a^b f(x)\,dx = F(b) - F(a) = \Big[F(x)\Big]_a^b$$</p>
+        </div>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Example</div>
+          <p>$$\int_0^2 (3x^2 + 1)\,dx = \Big[x^3 + x\Big]_0^2 = (8 + 2) - (0 + 0) = 10$$</p>
+        </div>
+
+        <div class="callout callout-info mt-6">
+          <div class="callout-title">Why This Matters</div>
+          <p>The FTC connects the two main branches of calculus — differential and integral calculus. It tells us that differentiation and integration are <strong>inverse operations</strong>. This is arguably the most important theorem in all of calculus.</p>
+        </div>
+
+        <h3 class="mt-8">Net Change Theorem</h3>
+        <div class="formula-box">
+          <p>$$\int_a^b F'(x)\,dx = F(b) - F(a)$$</p>
+          <p class="text-muted">The integral of a rate of change gives the net change.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 16: APPLICATIONS OF INTEGRALS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-applications-int">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 16</span>
+        <h2>Applications of Integrals</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Area Between Curves</h3>
+        <div class="formula-box">
+          <p>If \(f(x) \geq g(x)\) on \([a, b]\):</p>
+          <p>$$A = \int_a^b [f(x) - g(x)]\,dx$$</p>
+        </div>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Example</div>
+          <p>Area between \(y = x^2\) and \(y = x\) on \([0, 1]\):</p>
+          <p>$$A = \int_0^1 (x - x^2)\,dx = \left[\frac{x^2}{2} - \frac{x^3}{3}\right]_0^1 = \frac{1}{2} - \frac{1}{3} = \frac{1}{6}$$</p>
+        </div>
+
+        <h3 class="mt-8">Volumes of Revolution</h3>
+
+        <h4>Disk Method</h4>
+        <p>Revolving \(y = f(x)\) around the x-axis on \([a,b]\):</p>
+        <div class="formula-box">
+          <p>$$V = \pi\int_a^b [f(x)]^2\,dx$$</p>
+        </div>
+
+        <h4 class="mt-6">Washer Method</h4>
+        <p>When there is a hole (outer radius \(R(x)\), inner radius \(r(x)\)):</p>
+        <div class="formula-box">
+          <p>$$V = \pi\int_a^b \left([R(x)]^2 - [r(x)]^2\right)dx$$</p>
+        </div>
+
+        <h4 class="mt-6">Shell Method</h4>
+        <p>Revolving around the y-axis:</p>
+        <div class="formula-box">
+          <p>$$V = 2\pi\int_a^b x \cdot f(x)\,dx$$</p>
+        </div>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Example (Disk Method)</div>
+          <p>Volume of solid formed by revolving \(y = \sqrt{x}\) around the x-axis from \(x=0\) to \(x=4\):</p>
+          <p>$$V = \pi\int_0^4 (\sqrt{x})^2\,dx = \pi\int_0^4 x\,dx = \pi\left[\frac{x^2}{2}\right]_0^4 = 8\pi$$</p>
+        </div>
+
+        <h3 class="mt-8">Average Value of a Function</h3>
+        <div class="formula-box">
+          <p>$$f_{\text{avg}} = \frac{1}{b-a}\int_a^b f(x)\,dx$$</p>
+        </div>
+
+        <div class="callout callout-info mt-4">
+          <div class="callout-title">Mean Value Theorem for Integrals</div>
+          <p>If \(f\) is continuous on \([a,b]\), there exists \(c \in [a,b]\) such that:</p>
+          <p>$$f(c) = \frac{1}{b-a}\int_a^b f(x)\,dx$$</p>
+        </div>
+
+        <h3 class="mt-8">Work</h3>
+        <div class="formula-box">
+          <p>If a variable force \(F(x)\) moves an object from \(x = a\) to \(x = b\):</p>
+          <p>$$W = \int_a^b F(x)\,dx$$</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+      <div class="footer-content">
+        <p class="text-muted text-13px">Kolosal Math — A comprehensive learning resource from high school mathematics to Calculus 1.</p>
+        <p class="text-subtle text-12px mt-2">Built with Kolosal Vanilla Design System</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

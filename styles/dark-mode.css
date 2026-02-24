@@ -1,0 +1,227 @@
+/* ============================================
+   DARK MODE — Kolosal Math
+   ============================================ */
+
+body.dark-mode {
+  --color-text-900: #F3F4F6;
+  --color-text-800: #D1D5DB;
+  --color-text-700: #9CA3AF;
+  --color-text-600: #6B7280;
+  --color-text-500: #4B5563;
+
+  --color-bg: #111111;
+  --color-bg-secondary: #1A1A1A;
+  --color-bg-tertiary: #222222;
+  --color-surface: #1A1A1A;
+  --color-surface-hover: #242424;
+
+  --color-grey-50: #1A1A1A;
+  --color-grey-100: #242424;
+  --color-grey-200: #333333;
+  --color-grey-300: #444444;
+  --color-grey-400: #666666;
+  --color-grey-500: #888888;
+  --color-grey-600: #AAAAAA;
+  --color-grey-700: #CCCCCC;
+  --color-grey-800: #E5E5E5;
+  --color-grey-900: #F5F5F5;
+
+  --color-border: #2A2A2A;
+  --color-border-strong: #3A3A3A;
+
+  --color-information-50: #0A1929;
+  --color-information-100: #0D2744;
+  --color-information-200: #103766;
+  --color-information-500: #3A94F2;
+
+  --color-success-50: #0A1F0D;
+  --color-success-100: #0D2B12;
+  --color-success-200: #14431F;
+
+  --color-danger-50: #1F0A0A;
+  --color-danger-100: #2B0D0D;
+
+  --color-warning-50: #1F180A;
+  --color-warning-100: #2B200D;
+
+  --color-accent-light: #0A1929;
+
+  --shadow-sm: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0px 3px 4px -4px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0px 8px 24px -4px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .app-header {
+  background: rgba(17, 17, 17, 0.85);
+  border-bottom-color: var(--color-border);
+}
+
+body.dark-mode .logo-mark {
+  background: #FFFFFF;
+  color: #111111;
+}
+
+body.dark-mode .sidebar {
+  background: var(--color-bg);
+  border-right-color: var(--color-border);
+}
+
+body.dark-mode .sidebar-link:hover {
+  background: var(--color-grey-100);
+}
+
+body.dark-mode .sidebar-link.active {
+  background: var(--color-accent-light);
+}
+
+body.dark-mode .sidebar-link-number {
+  background: var(--color-grey-200);
+  color: var(--color-text-700);
+}
+
+body.dark-mode .sidebar-link.active .sidebar-link-number {
+  background: var(--color-accent);
+  color: #FFFFFF;
+}
+
+body.dark-mode .content-card {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+body.dark-mode .definition-box {
+  background: var(--color-information-50);
+  border-color: var(--color-information-200);
+}
+
+body.dark-mode .definition-label {
+  color: var(--color-information-500);
+}
+
+body.dark-mode .example-box {
+  background: var(--color-grey-50);
+  border-color: var(--color-grey-200);
+}
+
+body.dark-mode .formula-box {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-border);
+}
+
+body.dark-mode .formula-box.highlight {
+  background: linear-gradient(135deg, var(--color-information-50), #1A0F2E);
+  border-color: var(--color-information-200);
+}
+
+body.dark-mode .callout-info {
+  background: var(--color-information-50);
+  border-color: var(--color-information-500);
+}
+
+body.dark-mode .callout-info .callout-title {
+  color: var(--color-information-500);
+}
+
+body.dark-mode .callout-warning {
+  background: var(--color-warning-50);
+}
+
+body.dark-mode .callout-danger {
+  background: var(--color-danger-50);
+}
+
+body.dark-mode .concept-item {
+  border-color: var(--color-border);
+  background: var(--color-surface);
+}
+
+body.dark-mode .rule-item {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-border);
+}
+
+body.dark-mode .table-wrapper {
+  border-color: var(--color-border);
+}
+
+body.dark-mode .kolosal-table thead {
+  background: var(--color-bg-secondary);
+}
+
+body.dark-mode .kolosal-table th {
+  border-bottom-color: var(--color-border);
+  color: var(--color-text-600);
+}
+
+body.dark-mode .kolosal-table td {
+  border-bottom-color: var(--color-border);
+}
+
+body.dark-mode .kolosal-table tbody tr:hover {
+  background: var(--color-grey-100);
+}
+
+body.dark-mode .badge-information {
+  background: var(--color-information-50);
+  color: var(--color-information-500);
+}
+
+body.dark-mode .badge-grey {
+  background: var(--color-grey-200);
+  color: var(--color-text-700);
+}
+
+body.dark-mode .btn-primary {
+  background: #FFFFFF;
+  color: #111111;
+}
+
+body.dark-mode .btn-primary:hover {
+  background: #E5E5E5;
+}
+
+body.dark-mode .btn-outline {
+  background: transparent;
+  border-color: var(--color-border-strong);
+  color: var(--color-text-800);
+}
+
+body.dark-mode .btn-outline:hover {
+  background: var(--color-grey-100);
+}
+
+body.dark-mode .dark-mode-icon {
+  color: var(--color-warning-400);
+}
+
+body.dark-mode .app-footer {
+  border-top-color: var(--color-border);
+}
+
+body.dark-mode .chapter-divider {
+  border-bottom-color: var(--color-accent);
+}
+
+body.dark-mode .sidebar-overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode ::selection {
+  background: rgba(58, 148, 242, 0.3);
+  color: #FFFFFF;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+  background: var(--color-grey-300);
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: var(--color-grey-400);
+}
+
+/* Smooth transitions */
+body.dark-mode *,
+body.dark-mode *::before,
+body.dark-mode *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
