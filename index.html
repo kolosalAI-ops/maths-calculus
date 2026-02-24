@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kolosal Math — High School to Calculus 1</title>
+  <title>Kolosal Math — High School to Advanced Calculus</title>
   <link rel="stylesheet" href="styles/kolosal.css">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/dark-mode.css">
@@ -124,6 +124,74 @@
         </a>
       </div>
 
+      <div class="sidebar-section">
+        <div class="sidebar-section-title text-12px semibold">CALCULUS 2</div>
+        <a href="#ch-integration-tech" class="sidebar-link" data-chapter="ch-integration-tech">
+          <span class="sidebar-link-number">17</span>
+          Integration Techniques
+        </a>
+        <a href="#ch-improper-integrals" class="sidebar-link" data-chapter="ch-improper-integrals">
+          <span class="sidebar-link-number">18</span>
+          Improper Integrals
+        </a>
+        <a href="#ch-sequences-series" class="sidebar-link" data-chapter="ch-sequences-series">
+          <span class="sidebar-link-number">19</span>
+          Sequences & Series
+        </a>
+        <a href="#ch-power-series" class="sidebar-link" data-chapter="ch-power-series">
+          <span class="sidebar-link-number">20</span>
+          Power & Taylor Series
+        </a>
+        <a href="#ch-parametric-polar" class="sidebar-link" data-chapter="ch-parametric-polar">
+          <span class="sidebar-link-number">21</span>
+          Parametric & Polar Curves
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title text-12px semibold">CALCULUS 3 — MULTIVARIABLE</div>
+        <a href="#ch-vectors" class="sidebar-link" data-chapter="ch-vectors">
+          <span class="sidebar-link-number">22</span>
+          Vectors in 2D & 3D
+        </a>
+        <a href="#ch-vector-functions" class="sidebar-link" data-chapter="ch-vector-functions">
+          <span class="sidebar-link-number">23</span>
+          Vector-Valued Functions
+        </a>
+        <a href="#ch-partial-deriv" class="sidebar-link" data-chapter="ch-partial-deriv">
+          <span class="sidebar-link-number">24</span>
+          Partial Derivatives
+        </a>
+        <a href="#ch-multiple-integrals" class="sidebar-link" data-chapter="ch-multiple-integrals">
+          <span class="sidebar-link-number">25</span>
+          Multiple Integrals
+        </a>
+        <a href="#ch-vector-calculus" class="sidebar-link" data-chapter="ch-vector-calculus">
+          <span class="sidebar-link-number">26</span>
+          Vector Calculus
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title text-12px semibold">CALCULUS 4 — ADVANCED</div>
+        <a href="#ch-diff-equations" class="sidebar-link" data-chapter="ch-diff-equations">
+          <span class="sidebar-link-number">27</span>
+          Differential Equations
+        </a>
+        <a href="#ch-matrix-calculus" class="sidebar-link" data-chapter="ch-matrix-calculus">
+          <span class="sidebar-link-number">28</span>
+          Matrix Differentiation
+        </a>
+        <a href="#ch-surface-integrals" class="sidebar-link" data-chapter="ch-surface-integrals">
+          <span class="sidebar-link-number">29</span>
+          Surface Integrals & Theorems
+        </a>
+        <a href="#ch-applications-advanced" class="sidebar-link" data-chapter="ch-applications-advanced">
+          <span class="sidebar-link-number">30</span>
+          Advanced Applications
+        </a>
+      </div>
+
     </nav>
   </aside>
 
@@ -137,13 +205,16 @@
     <section class="hero">
       <div class="hero-badge">
         <span class="badge badge-sm badge-information">Complete Course</span>
-        <span class="badge badge-sm badge-grey">16 Chapters</span>
+        <span class="badge badge-sm badge-grey">30 Chapters</span>
+        <span class="badge badge-sm badge-success">Calculus 1–4</span>
       </div>
-      <h1 class="hero-title">Mathematics<br><span class="text-accent">High School to Calculus 1</span></h1>
-      <p class="hero-subtitle text-secondary">A comprehensive, self-paced learning guide covering everything from number systems and algebra through derivatives and integrals. Built for clarity.</p>
-      <div class="hero-actions flex gap-3">
+      <h1 class="hero-title">Mathematics<br><span class="text-accent">High School to Advanced Calculus</span></h1>
+      <p class="hero-subtitle text-secondary">A comprehensive, self-paced learning guide covering everything from number systems and algebra through multivariable calculus, vector fields, matrix differentiation, and differential equations. Built for clarity.</p>
+      <div class="hero-actions flex gap-3 flex-wrap">
         <a href="#ch-number-systems" class="btn btn-md btn-primary">Start Learning</a>
-        <a href="#ch-limits" class="btn btn-md btn-outline">Jump to Calculus</a>
+        <a href="#ch-limits" class="btn btn-md btn-outline">Jump to Calculus 1</a>
+        <a href="#ch-integration-tech" class="btn btn-md btn-outline">Jump to Calculus 2</a>
+        <a href="#ch-vectors" class="btn btn-md btn-outline">Jump to Calculus 3</a>
       </div>
     </section>
 
@@ -1322,10 +1393,960 @@
       </div>
     </section>
 
+    <!-- ============================================================ -->
+    <!-- CHAPTER 17: INTEGRATION TECHNIQUES -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-integration-tech">
+      <div class="chapter-header">
+        <div class="chapter-divider">
+          <span class="badge badge-md badge-success">Calculus 2 Begins</span>
+        </div>
+        <span class="chapter-number">Chapter 17</span>
+        <h2>Integration Techniques</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Integration by Parts</h3>
+        <div class="formula-box highlight">
+          <p>$$\int u\,dv = uv - \int v\,du$$</p>
+        </div>
+        <p>Choose \(u\) and \(dv\) using the <strong>LIATE</strong> priority: Logarithmic, Inverse trig, Algebraic, Trigonometric, Exponential.</p>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Example</div>
+          <p>\(\displaystyle\int x e^x\,dx\)</p>
+          <p>Let \(u = x\), \(dv = e^x\,dx\). Then \(du = dx\), \(v = e^x\).</p>
+          <p>\(= xe^x - \displaystyle\int e^x\,dx = xe^x - e^x + C = e^x(x - 1) + C\)</p>
+        </div>
+
+        <h3 class="mt-8">Trigonometric Integrals</h3>
+        <p>Key strategies for products of trig functions:</p>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-name">\(\int \sin^m x\cos^n x\,dx\)</span>
+            <span class="rule-formula">If \(m\) or \(n\) is odd, save one factor and convert the rest using \(\sin^2+\cos^2=1\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Both even</span>
+            <span class="rule-formula">Use half-angle: \(\sin^2 x = \frac{1-\cos 2x}{2}\), \(\cos^2 x = \frac{1+\cos 2x}{2}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">\(\int \tan^m x\sec^n x\,dx\)</span>
+            <span class="rule-formula">If \(n\) even, save \(\sec^2 x\) and convert. If \(m\) odd, save \(\sec x\tan x\).</span>
+          </div>
+        </div>
+
+        <h3 class="mt-8">Trigonometric Substitution</h3>
+        <div class="table-wrapper">
+          <table class="kolosal-table">
+            <thead>
+              <tr><th>Expression</th><th>Substitution</th><th>Identity Used</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>\(\sqrt{a^2 - x^2}\)</td><td>\(x = a\sin\theta\)</td><td>\(1 - \sin^2\theta = \cos^2\theta\)</td></tr>
+              <tr><td>\(\sqrt{a^2 + x^2}\)</td><td>\(x = a\tan\theta\)</td><td>\(1 + \tan^2\theta = \sec^2\theta\)</td></tr>
+              <tr><td>\(\sqrt{x^2 - a^2}\)</td><td>\(x = a\sec\theta\)</td><td>\(\sec^2\theta - 1 = \tan^2\theta\)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-8">Partial Fraction Decomposition</h3>
+        <p>For \(\displaystyle\int \frac{P(x)}{Q(x)}\,dx\) where \(\deg P < \deg Q\):</p>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-name">Distinct linear</span>
+            <span class="rule-formula">\(\frac{1}{(x-a)(x-b)} = \frac{A}{x-a} + \frac{B}{x-b}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Repeated linear</span>
+            <span class="rule-formula">\(\frac{1}{(x-a)^2} = \frac{A}{x-a} + \frac{B}{(x-a)^2}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Irreducible quadratic</span>
+            <span class="rule-formula">\(\frac{1}{x^2+bx+c} \to \frac{Ax+B}{x^2+bx+c}\)</span>
+          </div>
+        </div>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Example</div>
+          <p>\(\displaystyle\int \frac{5x+3}{(x+1)(x+2)}\,dx = \int\left(\frac{-2}{x+1} + \frac{7}{x+2}\right)dx\)</p>
+          <p>\(= -2\ln|x+1| + 7\ln|x+2| + C\)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 18: IMPROPER INTEGRALS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-improper-integrals">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 18</span>
+        <h2>Improper Integrals</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Type I: Infinite Limits</h3>
+        <div class="formula-box">
+          <p>$$\int_a^{\infty} f(x)\,dx = \lim_{t \to \infty}\int_a^t f(x)\,dx$$</p>
+        </div>
+        <p>If the limit exists and is finite, the integral <strong>converges</strong>; otherwise it <strong>diverges</strong>.</p>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Example</div>
+          <p>\(\displaystyle\int_1^{\infty}\frac{1}{x^2}\,dx = \lim_{t\to\infty}\left[-\frac{1}{x}\right]_1^t = \lim_{t\to\infty}\left(-\frac{1}{t}+1\right) = 1\) &nbsp;(converges)</p>
+          <p class="mt-2">\(\displaystyle\int_1^{\infty}\frac{1}{x}\,dx = \lim_{t\to\infty}[\ln x]_1^t = \infty\) &nbsp;(diverges)</p>
+        </div>
+
+        <h3 class="mt-8">Type II: Discontinuous Integrand</h3>
+        <div class="formula-box">
+          <p>If \(f\) has a discontinuity at \(x = a\): \(\displaystyle\int_a^b f(x)\,dx = \lim_{t \to a^+}\int_t^b f(x)\,dx\)</p>
+        </div>
+
+        <h3 class="mt-8">The p-Test</h3>
+        <div class="callout callout-info">
+          <div class="callout-title">p-Integral</div>
+          <p>\(\displaystyle\int_1^{\infty}\frac{1}{x^p}\,dx\) converges if \(p > 1\) and diverges if \(p \leq 1\).</p>
+        </div>
+
+        <h3 class="mt-8">Comparison Tests</h3>
+        <ul class="content-list">
+          <li><strong>Direct Comparison:</strong> If \(0 \leq f(x) \leq g(x)\) and \(\int g\) converges, then \(\int f\) converges.</li>
+          <li><strong>Limit Comparison:</strong> If \(\displaystyle\lim_{x\to\infty}\frac{f(x)}{g(x)} = L\) with \(0 < L < \infty\), then \(\int f\) and \(\int g\) both converge or both diverge.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 19: SEQUENCES & SERIES -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-sequences-series">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 19</span>
+        <h2>Sequences & Series</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Sequences</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>A <strong>sequence</strong> \(\{a_n\}\) is an ordered list of numbers. It <strong>converges</strong> to \(L\) if \(\displaystyle\lim_{n\to\infty}a_n = L\); otherwise it diverges.</p>
+        </div>
+
+        <h3 class="mt-8">Infinite Series</h3>
+        <div class="formula-box">
+          <p>$$\sum_{n=1}^{\infty} a_n = \lim_{N\to\infty}\sum_{n=1}^{N} a_n = \lim_{N\to\infty} S_N$$</p>
+          <p class="text-muted">where \(S_N\) is the \(N\)-th partial sum.</p>
+        </div>
+
+        <h4 class="mt-6">Geometric Series</h4>
+        <div class="formula-box highlight">
+          <p>$$\sum_{n=0}^{\infty} ar^n = \frac{a}{1-r}, \quad |r| < 1$$</p>
+          <p class="text-muted">Diverges if \(|r| \geq 1\).</p>
+        </div>
+
+        <h3 class="mt-8">Convergence Tests</h3>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-name">Divergence Test</span>
+            <span class="rule-formula">If \(\lim a_n \neq 0\), the series diverges.</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Integral Test</span>
+            <span class="rule-formula">\(\sum a_n\) and \(\int_1^\infty f(x)\,dx\) converge/diverge together (if \(a_n = f(n)\)).</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Ratio Test</span>
+            <span class="rule-formula">\(L = \lim\left|\frac{a_{n+1}}{a_n}\right|\). Converges if \(L<1\), diverges if \(L>1\).</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Root Test</span>
+            <span class="rule-formula">\(L = \lim\sqrt[n]{|a_n|}\). Converges if \(L<1\), diverges if \(L>1\).</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Comparison Test</span>
+            <span class="rule-formula">Compare with a known convergent/divergent series.</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Alternating Series</span>
+            <span class="rule-formula">\(\sum(-1)^n b_n\) converges if \(b_n\) is decreasing and \(\lim b_n = 0\).</span>
+          </div>
+        </div>
+
+        <h3 class="mt-8">Absolute vs Conditional Convergence</h3>
+        <ul class="content-list">
+          <li><strong>Absolute convergence:</strong> \(\sum|a_n|\) converges \(\implies \sum a_n\) converges.</li>
+          <li><strong>Conditional convergence:</strong> \(\sum a_n\) converges but \(\sum|a_n|\) diverges.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 20: POWER & TAYLOR SERIES -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-power-series">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 20</span>
+        <h2>Power & Taylor Series</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Power Series</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>A <strong>power series</strong> centered at \(a\) is: \(\displaystyle\sum_{n=0}^{\infty} c_n(x-a)^n\)</p>
+          <p class="mt-2">The <strong>radius of convergence</strong> \(R\) satisfies: the series converges for \(|x-a| < R\) and diverges for \(|x-a| > R\).</p>
+        </div>
+
+        <h3 class="mt-8">Taylor & Maclaurin Series</h3>
+        <div class="formula-box highlight">
+          <p><strong>Taylor series</strong> of \(f\) centered at \(a\):</p>
+          <p>$$f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n$$</p>
+          <p class="text-muted mt-2">When \(a = 0\), this is the <strong>Maclaurin series</strong>.</p>
+        </div>
+
+        <h3 class="mt-8">Important Maclaurin Series</h3>
+        <div class="table-wrapper">
+          <table class="kolosal-table">
+            <thead>
+              <tr><th>Function</th><th>Series</th><th>Radius</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>\(e^x\)</td><td>\(\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}\)</td><td>\(R = \infty\)</td></tr>
+              <tr><td>\(\sin x\)</td><td>\(\displaystyle\sum_{n=0}^{\infty}\frac{(-1)^n x^{2n+1}}{(2n+1)!}\)</td><td>\(R = \infty\)</td></tr>
+              <tr><td>\(\cos x\)</td><td>\(\displaystyle\sum_{n=0}^{\infty}\frac{(-1)^n x^{2n}}{(2n)!}\)</td><td>\(R = \infty\)</td></tr>
+              <tr><td>\(\frac{1}{1-x}\)</td><td>\(\displaystyle\sum_{n=0}^{\infty}x^n\)</td><td>\(R = 1\)</td></tr>
+              <tr><td>\(\ln(1+x)\)</td><td>\(\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n+1}x^n}{n}\)</td><td>\(R = 1\)</td></tr>
+              <tr><td>\(\arctan x\)</td><td>\(\displaystyle\sum_{n=0}^{\infty}\frac{(-1)^n x^{2n+1}}{2n+1}\)</td><td>\(R = 1\)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-8">Taylor's Theorem with Remainder</h3>
+        <div class="formula-box">
+          <p>$$f(x) = \sum_{n=0}^{N}\frac{f^{(n)}(a)}{n!}(x-a)^n + R_N(x)$$</p>
+          <p class="mt-2"><strong>Lagrange remainder:</strong> \(R_N(x) = \frac{f^{(N+1)}(c)}{(N+1)!}(x-a)^{N+1}\) for some \(c\) between \(a\) and \(x\).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 21: PARAMETRIC & POLAR CURVES -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-parametric-polar">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 21</span>
+        <h2>Parametric & Polar Curves</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Parametric Equations</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>A <strong>parametric curve</strong> is defined by \(x = f(t)\), \(y = g(t)\) for \(t\) in some interval.</p>
+        </div>
+
+        <h4 class="mt-6">Calculus with Parametric Curves</h4>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-name">Slope</span>
+            <span class="rule-formula">\(\frac{dy}{dx} = \frac{dy/dt}{dx/dt}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Second Derivative</span>
+            <span class="rule-formula">\(\frac{d^2y}{dx^2} = \frac{\frac{d}{dt}\!\left(\frac{dy}{dx}\right)}{dx/dt}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Arc Length</span>
+            <span class="rule-formula">\(L = \displaystyle\int_a^b\sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2}\,dt\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Area under curve</span>
+            <span class="rule-formula">\(A = \displaystyle\int_a^b y(t)\,x'(t)\,dt\)</span>
+          </div>
+        </div>
+
+        <h3 class="mt-8">Polar Coordinates</h3>
+        <div class="formula-box">
+          <p><strong>Conversion:</strong> \(x = r\cos\theta\), \(y = r\sin\theta\), \(r^2 = x^2 + y^2\), \(\tan\theta = \frac{y}{x}\)</p>
+        </div>
+
+        <h4 class="mt-6">Calculus in Polar Coordinates</h4>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-name">Slope</span>
+            <span class="rule-formula">\(\frac{dy}{dx} = \frac{r'\sin\theta + r\cos\theta}{r'\cos\theta - r\sin\theta}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Area</span>
+            <span class="rule-formula">\(A = \frac{1}{2}\displaystyle\int_\alpha^\beta [r(\theta)]^2\,d\theta\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Arc Length</span>
+            <span class="rule-formula">\(L = \displaystyle\int_\alpha^\beta\sqrt{r^2 + \left(\frac{dr}{d\theta}\right)^2}\,d\theta\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Area between curves</span>
+            <span class="rule-formula">\(A = \frac{1}{2}\displaystyle\int_\alpha^\beta\!\left([r_1]^2 - [r_2]^2\right)d\theta\)</span>
+          </div>
+        </div>
+
+        <h3 class="mt-8">Common Polar Curves</h3>
+        <div class="table-wrapper">
+          <table class="kolosal-table">
+            <thead><tr><th>Name</th><th>Equation</th><th>Shape</th></tr></thead>
+            <tbody>
+              <tr><td>Circle</td><td>\(r = a\)</td><td>Circle of radius \(a\)</td></tr>
+              <tr><td>Cardioid</td><td>\(r = a(1 + \cos\theta)\)</td><td>Heart shape</td></tr>
+              <tr><td>Rose</td><td>\(r = a\cos(n\theta)\)</td><td>\(n\) petals (if odd) or \(2n\) petals (if even)</td></tr>
+              <tr><td>Lemniscate</td><td>\(r^2 = a^2\cos 2\theta\)</td><td>Figure-eight</td></tr>
+              <tr><td>Spiral</td><td>\(r = a\theta\)</td><td>Archimedean spiral</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 22: VECTORS IN 2D & 3D -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-vectors">
+      <div class="chapter-header">
+        <div class="chapter-divider">
+          <span class="badge badge-md badge-warning">Calculus 3 — Multivariable</span>
+        </div>
+        <span class="chapter-number">Chapter 22</span>
+        <h2>Vectors in 2D & 3D</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Vector Basics</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>A <strong>vector</strong> in \(\mathbb{R}^n\) is an ordered list of components. In 3D: \(\mathbf{v} = \langle v_1, v_2, v_3 \rangle\).</p>
+        </div>
+
+        <h4 class="mt-6">Operations</h4>
+        <div class="rules-grid three-col">
+          <div class="rule-item">
+            <span class="rule-name">Addition</span>
+            <span class="rule-formula">\(\mathbf{u}+\mathbf{v} = \langle u_1+v_1,\, u_2+v_2,\, u_3+v_3\rangle\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Scalar Mult.</span>
+            <span class="rule-formula">\(c\mathbf{v} = \langle cv_1, cv_2, cv_3\rangle\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Magnitude</span>
+            <span class="rule-formula">\(\|\mathbf{v}\| = \sqrt{v_1^2+v_2^2+v_3^2}\)</span>
+          </div>
+        </div>
+
+        <h3 class="mt-8">Dot Product</h3>
+        <div class="formula-box">
+          <p>$$\mathbf{u}\cdot\mathbf{v} = u_1v_1 + u_2v_2 + u_3v_3 = \|\mathbf{u}\|\|\mathbf{v}\|\cos\theta$$</p>
+        </div>
+        <ul class="content-list">
+          <li>If \(\mathbf{u}\cdot\mathbf{v} = 0\), the vectors are <strong>orthogonal</strong> (perpendicular).</li>
+          <li><strong>Scalar projection</strong> of \(\mathbf{u}\) onto \(\mathbf{v}\): \(\text{comp}_{\mathbf{v}}\mathbf{u} = \frac{\mathbf{u}\cdot\mathbf{v}}{\|\mathbf{v}\|}\)</li>
+          <li><strong>Vector projection:</strong> \(\text{proj}_{\mathbf{v}}\mathbf{u} = \frac{\mathbf{u}\cdot\mathbf{v}}{\|\mathbf{v}\|^2}\mathbf{v}\)</li>
+        </ul>
+
+        <h3 class="mt-8">Cross Product (3D only)</h3>
+        <div class="formula-box highlight">
+          <p>$$\mathbf{u}\times\mathbf{v} = \begin{vmatrix}\mathbf{i}&\mathbf{j}&\mathbf{k}\\u_1&u_2&u_3\\v_1&v_2&v_3\end{vmatrix} = \langle u_2v_3-u_3v_2,\; u_3v_1-u_1v_3,\; u_1v_2-u_2v_1\rangle$$</p>
+        </div>
+        <ul class="content-list">
+          <li>\(\|\mathbf{u}\times\mathbf{v}\| = \|\mathbf{u}\|\|\mathbf{v}\|\sin\theta\) — equals the area of the parallelogram.</li>
+          <li>\(\mathbf{u}\times\mathbf{v}\) is <strong>perpendicular</strong> to both \(\mathbf{u}\) and \(\mathbf{v}\).</li>
+          <li>\(\mathbf{u}\times\mathbf{v} = -(\mathbf{v}\times\mathbf{u})\) — anticommutative.</li>
+        </ul>
+
+        <h3 class="mt-8">Lines & Planes in 3D</h3>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-name">Line (parametric)</span>
+            <span class="rule-formula">\(\mathbf{r}(t) = \mathbf{r}_0 + t\mathbf{d}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Plane</span>
+            <span class="rule-formula">\(\mathbf{n}\cdot(\mathbf{r}-\mathbf{r}_0) = 0\), i.e. \(ax+by+cz=d\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Distance (point to plane)</span>
+            <span class="rule-formula">\(D = \frac{|ax_0+by_0+cz_0-d|}{\sqrt{a^2+b^2+c^2}}\)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 23: VECTOR-VALUED FUNCTIONS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-vector-functions">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 23</span>
+        <h2>Vector-Valued Functions</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Definition</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>A <strong>vector-valued function</strong> maps \(t \in \mathbb{R}\) to a vector:</p>
+          <p>\(\mathbf{r}(t) = \langle f(t),\, g(t),\, h(t)\rangle\)</p>
+        </div>
+
+        <h3 class="mt-8">Calculus of Vector Functions</h3>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-name">Derivative</span>
+            <span class="rule-formula">\(\mathbf{r}'(t) = \langle f'(t), g'(t), h'(t)\rangle\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Integral</span>
+            <span class="rule-formula">\(\int\mathbf{r}(t)\,dt = \langle\int f\,dt, \int g\,dt, \int h\,dt\rangle\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Unit Tangent</span>
+            <span class="rule-formula">\(\mathbf{T}(t) = \frac{\mathbf{r}'(t)}{\|\mathbf{r}'(t)\|}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Unit Normal</span>
+            <span class="rule-formula">\(\mathbf{N}(t) = \frac{\mathbf{T}'(t)}{\|\mathbf{T}'(t)\|}\)</span>
+          </div>
+        </div>
+
+        <h3 class="mt-8">Arc Length & Curvature</h3>
+        <div class="formula-box">
+          <p><strong>Arc length:</strong> \(\displaystyle L = \int_a^b \|\mathbf{r}'(t)\|\,dt\)</p>
+          <p class="mt-2"><strong>Curvature:</strong> \(\displaystyle\kappa = \frac{\|\mathbf{T}'(t)\|}{\|\mathbf{r}'(t)\|} = \frac{\|\mathbf{r}'(t)\times\mathbf{r}''(t)\|}{\|\mathbf{r}'(t)\|^3}\)</p>
+        </div>
+
+        <h3 class="mt-8">Motion in Space</h3>
+        <p>For a position vector \(\mathbf{r}(t)\):</p>
+        <ul class="content-list">
+          <li><strong>Velocity:</strong> \(\mathbf{v}(t) = \mathbf{r}'(t)\)</li>
+          <li><strong>Speed:</strong> \(|\mathbf{v}(t)| = \|\mathbf{r}'(t)\|\)</li>
+          <li><strong>Acceleration:</strong> \(\mathbf{a}(t) = \mathbf{r}''(t)\)</li>
+          <li><strong>Tangential component:</strong> \(a_T = \frac{\mathbf{r}'\cdot\mathbf{r}''}{\|\mathbf{r}'\|}\)</li>
+          <li><strong>Normal component:</strong> \(a_N = \frac{\|\mathbf{r}'\times\mathbf{r}''\|}{\|\mathbf{r}'\|}\)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 24: PARTIAL DERIVATIVES -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-partial-deriv">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 24</span>
+        <h2>Partial Derivatives</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Functions of Several Variables</h3>
+        <p>A function \(f: \mathbb{R}^n \to \mathbb{R}\) takes multiple inputs. For two variables: \(z = f(x, y)\). The graph is a <strong>surface</strong> in 3D.</p>
+
+        <h3 class="mt-8">Partial Derivatives</h3>
+        <div class="formula-box highlight">
+          <p>$$f_x(x,y) = \frac{\partial f}{\partial x} = \lim_{h\to 0}\frac{f(x+h,y)-f(x,y)}{h}$$</p>
+          <p class="mt-2">$$f_y(x,y) = \frac{\partial f}{\partial y} = \lim_{h\to 0}\frac{f(x,y+h)-f(x,y)}{h}$$</p>
+        </div>
+        <p>Treat the other variable as a constant when differentiating.</p>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Example</div>
+          <p>\(f(x,y) = x^3y + 2xy^2 - y\)</p>
+          <p>\(f_x = 3x^2y + 2y^2\)</p>
+          <p>\(f_y = x^3 + 4xy - 1\)</p>
+        </div>
+
+        <h3 class="mt-8">Higher-Order Partials</h3>
+        <div class="formula-box">
+          <p>\(f_{xx} = \frac{\partial^2 f}{\partial x^2}\), \(f_{yy} = \frac{\partial^2 f}{\partial y^2}\), \(f_{xy} = \frac{\partial^2 f}{\partial y\,\partial x}\)</p>
+        </div>
+        <div class="callout callout-info mt-3">
+          <div class="callout-title">Clairaut's Theorem</div>
+          <p>If \(f_{xy}\) and \(f_{yx}\) are both continuous, then \(f_{xy} = f_{yx}\).</p>
+        </div>
+
+        <h3 class="mt-8">The Gradient</h3>
+        <div class="formula-box highlight">
+          <p>$$\nabla f(x,y) = \langle f_x, f_y\rangle \qquad \nabla f(x,y,z) = \langle f_x, f_y, f_z\rangle$$</p>
+        </div>
+        <ul class="content-list">
+          <li>\(\nabla f\) points in the direction of <strong>greatest increase</strong> of \(f\).</li>
+          <li>\(\|\nabla f\|\) is the maximum rate of change.</li>
+          <li>\(\nabla f\) is <strong>perpendicular</strong> to the level curves/surfaces.</li>
+        </ul>
+
+        <h3 class="mt-8">Chain Rule (Multivariable)</h3>
+        <div class="formula-box">
+          <p>If \(z = f(x,y)\), \(x = x(t)\), \(y = y(t)\):</p>
+          <p>$$\frac{dz}{dt} = \frac{\partial f}{\partial x}\frac{dx}{dt} + \frac{\partial f}{\partial y}\frac{dy}{dt}$$</p>
+        </div>
+
+        <h3 class="mt-8">Directional Derivative</h3>
+        <div class="formula-box">
+          <p>$$D_{\mathbf{u}}f = \nabla f \cdot \mathbf{u} = f_x u_1 + f_y u_2$$</p>
+          <p class="text-muted">where \(\mathbf{u}\) is a unit vector.</p>
+        </div>
+
+        <h3 class="mt-8">Tangent Planes & Linear Approximation</h3>
+        <div class="formula-box">
+          <p><strong>Tangent plane</strong> to \(z = f(x,y)\) at \((a,b)\):</p>
+          <p>$$z = f(a,b) + f_x(a,b)(x-a) + f_y(a,b)(y-b)$$</p>
+        </div>
+
+        <h3 class="mt-8">Optimization (Two Variables)</h3>
+        <p>Find critical points where \(f_x = 0\) and \(f_y = 0\). Then apply:</p>
+        <div class="callout callout-info mt-3">
+          <div class="callout-title">Second Derivative Test (2D)</div>
+          <p>Let \(D = f_{xx}f_{yy} - (f_{xy})^2\) at the critical point:</p>
+          <ul class="content-list">
+            <li>\(D > 0\) and \(f_{xx} > 0\): local <strong>minimum</strong></li>
+            <li>\(D > 0\) and \(f_{xx} < 0\): local <strong>maximum</strong></li>
+            <li>\(D < 0\): <strong>saddle point</strong></li>
+            <li>\(D = 0\): inconclusive</li>
+          </ul>
+        </div>
+
+        <h3 class="mt-8">Lagrange Multipliers</h3>
+        <div class="formula-box highlight">
+          <p>To optimize \(f(x,y)\) subject to constraint \(g(x,y) = c\), solve:</p>
+          <p>$$\nabla f = \lambda\,\nabla g \quad \text{and} \quad g(x,y) = c$$</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 25: MULTIPLE INTEGRALS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-multiple-integrals">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 25</span>
+        <h2>Multiple Integrals</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Double Integrals</h3>
+        <div class="formula-box">
+          <p>$$\iint_R f(x,y)\,dA = \int_a^b\int_{g_1(x)}^{g_2(x)} f(x,y)\,dy\,dx$$</p>
+        </div>
+        <p>The double integral computes the <strong>volume</strong> under the surface \(z = f(x,y)\) over region \(R\).</p>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Example</div>
+          <p>\(\displaystyle\iint_R xy\,dA\) where \(R = [0,1]\times[0,2]\):</p>
+          <p>\(= \displaystyle\int_0^1\int_0^2 xy\,dy\,dx = \int_0^1 x\left[\frac{y^2}{2}\right]_0^2 dx = \int_0^1 2x\,dx = 1\)</p>
+        </div>
+
+        <h3 class="mt-8">Changing Order of Integration</h3>
+        <p>Sometimes switching the order \(dy\,dx \leftrightarrow dx\,dy\) simplifies the integral. Sketch the region to find new bounds.</p>
+
+        <h3 class="mt-8">Double Integrals in Polar Coordinates</h3>
+        <div class="formula-box highlight">
+          <p>$$\iint_R f(x,y)\,dA = \int_\alpha^\beta\int_{r_1(\theta)}^{r_2(\theta)} f(r\cos\theta, r\sin\theta)\;r\,dr\,d\theta$$</p>
+          <p class="text-muted">Note the extra factor of \(r\) in the integrand.</p>
+        </div>
+
+        <h3 class="mt-8">Triple Integrals</h3>
+        <div class="formula-box">
+          <p>$$\iiint_E f(x,y,z)\,dV = \int\int\int f(x,y,z)\,dz\,dy\,dx$$</p>
+        </div>
+
+        <h4 class="mt-6">Cylindrical Coordinates</h4>
+        <div class="formula-box">
+          <p>\(x = r\cos\theta\), \(y = r\sin\theta\), \(z = z\). &nbsp; \(dV = r\,dr\,d\theta\,dz\)</p>
+        </div>
+
+        <h4 class="mt-6">Spherical Coordinates</h4>
+        <div class="formula-box">
+          <p>\(x = \rho\sin\phi\cos\theta\), \(y = \rho\sin\phi\sin\theta\), \(z = \rho\cos\phi\)</p>
+          <p class="mt-2">\(dV = \rho^2\sin\phi\,d\rho\,d\phi\,d\theta\)</p>
+        </div>
+
+        <h3 class="mt-8">Change of Variables (Jacobian)</h3>
+        <div class="formula-box highlight">
+          <p>$$\iint_R f(x,y)\,dA = \iint_S f(x(u,v),\,y(u,v))\left|\frac{\partial(x,y)}{\partial(u,v)}\right|du\,dv$$</p>
+          <p class="mt-2">$$\frac{\partial(x,y)}{\partial(u,v)} = \begin{vmatrix}\frac{\partial x}{\partial u}&\frac{\partial x}{\partial v}\\\frac{\partial y}{\partial u}&\frac{\partial y}{\partial v}\end{vmatrix}$$</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 26: VECTOR CALCULUS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-vector-calculus">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 26</span>
+        <h2>Vector Calculus</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Vector Fields</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>A <strong>vector field</strong> assigns a vector to each point in space:</p>
+          <p>\(\mathbf{F}(x,y) = \langle P(x,y),\, Q(x,y)\rangle\) &nbsp;(2D)</p>
+          <p>\(\mathbf{F}(x,y,z) = \langle P, Q, R\rangle\) &nbsp;(3D)</p>
+        </div>
+
+        <h3 class="mt-8">Line Integrals</h3>
+        <div class="formula-box">
+          <p><strong>Scalar:</strong> \(\displaystyle\int_C f\,ds = \int_a^b f(\mathbf{r}(t))\|\mathbf{r}'(t)\|\,dt\)</p>
+          <p class="mt-2"><strong>Vector:</strong> \(\displaystyle\int_C \mathbf{F}\cdot d\mathbf{r} = \int_a^b \mathbf{F}(\mathbf{r}(t))\cdot\mathbf{r}'(t)\,dt\)</p>
+        </div>
+
+        <h3 class="mt-8">Conservative Fields & Potential Functions</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>\(\mathbf{F}\) is <strong>conservative</strong> if \(\mathbf{F} = \nabla f\) for some scalar function \(f\) (the potential function). Then:</p>
+          <p>\(\displaystyle\int_C \mathbf{F}\cdot d\mathbf{r} = f(\mathbf{r}(b)) - f(\mathbf{r}(a))\) &nbsp;(path-independent)</p>
+        </div>
+
+        <div class="callout callout-info mt-4">
+          <div class="callout-title">Test for Conservative Field (2D)</div>
+          <p>If \(\mathbf{F} = \langle P, Q\rangle\) on a simply connected domain, then \(\mathbf{F}\) is conservative iff \(\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}\).</p>
+        </div>
+
+        <h3 class="mt-8">Green's Theorem</h3>
+        <div class="formula-box highlight">
+          <p>$$\oint_C P\,dx + Q\,dy = \iint_D \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)dA$$</p>
+          <p class="text-muted">where \(C\) is a positively oriented, simple, closed curve bounding \(D\).</p>
+        </div>
+
+        <h3 class="mt-8">Divergence & Curl</h3>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-name">Divergence</span>
+            <span class="rule-formula">\(\nabla\cdot\mathbf{F} = \frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Curl</span>
+            <span class="rule-formula">\(\nabla\times\mathbf{F} = \begin{vmatrix}\mathbf{i}&\mathbf{j}&\mathbf{k}\\\partial_x&\partial_y&\partial_z\\P&Q&R\end{vmatrix}\)</span>
+          </div>
+        </div>
+        <ul class="content-list mt-3">
+          <li>Divergence measures the "outward flux" per unit volume — is the field expanding or compressing?</li>
+          <li>Curl measures the "rotation" of the field.</li>
+          <li>\(\mathbf{F}\) is conservative \(\iff \nabla\times\mathbf{F} = \mathbf{0}\) (on simply connected domain).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 27: DIFFERENTIAL EQUATIONS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-diff-equations">
+      <div class="chapter-header">
+        <div class="chapter-divider">
+          <span class="badge badge-md badge-danger">Calculus 4 — Advanced</span>
+        </div>
+        <span class="chapter-number">Chapter 27</span>
+        <h2>Differential Equations</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>First-Order ODEs</h3>
+
+        <h4>Separable Equations</h4>
+        <div class="formula-box">
+          <p>$$\frac{dy}{dx} = g(x)h(y) \implies \int\frac{dy}{h(y)} = \int g(x)\,dx$$</p>
+        </div>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Example</div>
+          <p>\(\frac{dy}{dx} = xy \implies \frac{dy}{y} = x\,dx \implies \ln|y| = \frac{x^2}{2}+C \implies y = Ae^{x^2/2}\)</p>
+        </div>
+
+        <h4 class="mt-6">First-Order Linear</h4>
+        <div class="formula-box highlight">
+          <p>$$\frac{dy}{dx} + P(x)y = Q(x)$$</p>
+          <p class="mt-2"><strong>Integrating factor:</strong> \(\mu(x) = e^{\int P(x)\,dx}\)</p>
+          <p class="mt-2"><strong>Solution:</strong> \(y = \frac{1}{\mu(x)}\displaystyle\int \mu(x)Q(x)\,dx\)</p>
+        </div>
+
+        <h4 class="mt-6">Exact Equations</h4>
+        <p>\(M(x,y)\,dx + N(x,y)\,dy = 0\) is exact if \(\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}\).</p>
+
+        <h3 class="mt-8">Second-Order Linear ODEs</h3>
+        <div class="formula-box">
+          <p>$$ay'' + by' + cy = 0$$</p>
+          <p class="mt-2"><strong>Characteristic equation:</strong> \(ar^2 + br + c = 0\)</p>
+        </div>
+
+        <div class="table-wrapper mt-4">
+          <table class="kolosal-table">
+            <thead><tr><th>Roots</th><th>General Solution</th></tr></thead>
+            <tbody>
+              <tr><td>Distinct real \(r_1, r_2\)</td><td>\(y = c_1e^{r_1 x} + c_2e^{r_2 x}\)</td></tr>
+              <tr><td>Repeated real \(r\)</td><td>\(y = (c_1 + c_2 x)e^{rx}\)</td></tr>
+              <tr><td>Complex \(\alpha \pm \beta i\)</td><td>\(y = e^{\alpha x}(c_1\cos\beta x + c_2\sin\beta x)\)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 class="mt-6">Nonhomogeneous: Method of Undetermined Coefficients</h4>
+        <p>For \(ay'' + by' + cy = g(x)\), the general solution is \(y = y_h + y_p\) where \(y_h\) is the homogeneous solution and \(y_p\) is a particular solution whose form is guessed from \(g(x)\):</p>
+        <ul class="content-list">
+          <li>\(g(x) = e^{kx}\) → try \(y_p = Ae^{kx}\)</li>
+          <li>\(g(x) = \) polynomial degree \(n\) → try polynomial degree \(n\)</li>
+          <li>\(g(x) = \sin kx\) or \(\cos kx\) → try \(y_p = A\cos kx + B\sin kx\)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 28: MATRIX DIFFERENTIATION -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-matrix-calculus">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 28</span>
+        <h2>Matrix Differentiation</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Matrix Calculus Notation</h3>
+        <p>Matrix calculus extends differentiation to functions involving vectors and matrices. Let \(\mathbf{x} \in \mathbb{R}^n\) be a column vector and \(f: \mathbb{R}^n \to \mathbb{R}\) a scalar function.</p>
+
+        <div class="definition-box">
+          <div class="definition-label">Numerator Layout Convention</div>
+          <p>We use the <strong>numerator layout</strong> (Jacobian convention): the derivative of a scalar by a column vector is a <strong>row vector</strong>, and the derivative of a column vector by a scalar is a <strong>column vector</strong>.</p>
+        </div>
+
+        <h3 class="mt-8">Gradient (Scalar by Vector)</h3>
+        <div class="formula-box highlight">
+          <p>$$\nabla_{\mathbf{x}} f = \frac{\partial f}{\partial \mathbf{x}} = \begin{bmatrix}\frac{\partial f}{\partial x_1} & \frac{\partial f}{\partial x_2} & \cdots & \frac{\partial f}{\partial x_n}\end{bmatrix}$$</p>
+        </div>
+
+        <h3 class="mt-8">Jacobian (Vector by Vector)</h3>
+        <div class="formula-box highlight">
+          <p>For \(\mathbf{f}: \mathbb{R}^n \to \mathbb{R}^m\), the Jacobian matrix is:</p>
+          <p>$$\mathbf{J} = \frac{\partial \mathbf{f}}{\partial \mathbf{x}} = \begin{bmatrix}\frac{\partial f_1}{\partial x_1}&\cdots&\frac{\partial f_1}{\partial x_n}\\\vdots&\ddots&\vdots\\\frac{\partial f_m}{\partial x_1}&\cdots&\frac{\partial f_m}{\partial x_n}\end{bmatrix} \in \mathbb{R}^{m \times n}$$</p>
+        </div>
+
+        <h3 class="mt-8">Hessian Matrix</h3>
+        <div class="formula-box">
+          <p>For \(f: \mathbb{R}^n \to \mathbb{R}\):</p>
+          <p>$$\mathbf{H} = \nabla^2 f = \begin{bmatrix}\frac{\partial^2 f}{\partial x_1^2}&\frac{\partial^2 f}{\partial x_1\partial x_2}&\cdots\\\frac{\partial^2 f}{\partial x_2\partial x_1}&\frac{\partial^2 f}{\partial x_2^2}&\cdots\\\vdots&\vdots&\ddots\end{bmatrix}$$</p>
+          <p class="text-muted">The Hessian is symmetric if \(f\) has continuous second partials.</p>
+        </div>
+
+        <h3 class="mt-8">Key Matrix Derivative Identities</h3>
+        <p>For constant matrix \(A\), constant vector \(\mathbf{b}\), and variable vector \(\mathbf{x}\):</p>
+        <div class="rules-grid">
+          <div class="rule-item">
+            <span class="rule-name">Linear form</span>
+            <span class="rule-formula">\(\frac{\partial}{\partial \mathbf{x}}(\mathbf{b}^\top\mathbf{x}) = \mathbf{b}^\top\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Quadratic form</span>
+            <span class="rule-formula">\(\frac{\partial}{\partial \mathbf{x}}(\mathbf{x}^\top A\mathbf{x}) = \mathbf{x}^\top(A + A^\top)\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Symmetric quadratic</span>
+            <span class="rule-formula">If \(A = A^\top\): \(\frac{\partial}{\partial \mathbf{x}}(\mathbf{x}^\top A\mathbf{x}) = 2\mathbf{x}^\top A\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Matrix-vector product</span>
+            <span class="rule-formula">\(\frac{\partial}{\partial \mathbf{x}}(A\mathbf{x}) = A\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Norm squared</span>
+            <span class="rule-formula">\(\frac{\partial}{\partial \mathbf{x}}\|\mathbf{x}\|^2 = 2\mathbf{x}^\top\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Chain rule</span>
+            <span class="rule-formula">\(\frac{\partial f}{\partial \mathbf{x}} = \frac{\partial f}{\partial \mathbf{u}}\frac{\partial \mathbf{u}}{\partial \mathbf{x}}\)</span>
+          </div>
+        </div>
+
+        <h3 class="mt-8">Derivatives Involving Matrices</h3>
+        <p>For matrix variable \(X \in \mathbb{R}^{m\times n}\) and scalar function \(f(X)\):</p>
+        <div class="formula-box">
+          <p>$$\frac{\partial f}{\partial X} = \begin{bmatrix}\frac{\partial f}{\partial X_{11}}&\cdots&\frac{\partial f}{\partial X_{1n}}\\\vdots&\ddots&\vdots\\\frac{\partial f}{\partial X_{m1}}&\cdots&\frac{\partial f}{\partial X_{mn}}\end{bmatrix}$$</p>
+        </div>
+
+        <div class="rules-grid mt-4">
+          <div class="rule-item">
+            <span class="rule-name">Trace</span>
+            <span class="rule-formula">\(\frac{\partial}{\partial X}\text{tr}(AX) = A^\top\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Trace (quadratic)</span>
+            <span class="rule-formula">\(\frac{\partial}{\partial X}\text{tr}(X^\top AX) = (A+A^\top)X\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Determinant</span>
+            <span class="rule-formula">\(\frac{\partial}{\partial X}\ln\det(X) = (X^{-1})^\top\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Inverse</span>
+            <span class="rule-formula">\(\frac{\partial}{\partial X}\text{tr}(AX^{-1}) = -(X^{-1}AX^{-1})^\top\)</span>
+          </div>
+        </div>
+
+        <div class="callout callout-info mt-6">
+          <div class="callout-title">Application: Least Squares</div>
+          <p>The loss \(L = \|A\mathbf{x} - \mathbf{b}\|^2 = (A\mathbf{x}-\mathbf{b})^\top(A\mathbf{x}-\mathbf{b})\).</p>
+          <p>Setting \(\frac{\partial L}{\partial \mathbf{x}} = 0\) gives the <strong>normal equations</strong>:</p>
+          <p>$$A^\top A\mathbf{x} = A^\top\mathbf{b} \implies \mathbf{x} = (A^\top A)^{-1}A^\top\mathbf{b}$$</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 29: SURFACE INTEGRALS & THEOREMS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-surface-integrals">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 29</span>
+        <h2>Surface Integrals & Fundamental Theorems</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Parametric Surfaces</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>A parametric surface is \(\mathbf{r}(u,v) = \langle x(u,v),\, y(u,v),\, z(u,v)\rangle\) for \((u,v)\) in domain \(D\).</p>
+        </div>
+
+        <h3 class="mt-8">Surface Area</h3>
+        <div class="formula-box">
+          <p>$$A = \iint_D \|\mathbf{r}_u \times \mathbf{r}_v\|\,dA$$</p>
+          <p class="text-muted">For \(z = g(x,y)\): \(A = \displaystyle\iint_D\sqrt{1 + g_x^2 + g_y^2}\,dA\)</p>
+        </div>
+
+        <h3 class="mt-8">Surface Integrals of Scalar Functions</h3>
+        <div class="formula-box">
+          <p>$$\iint_S f\,dS = \iint_D f(\mathbf{r}(u,v))\|\mathbf{r}_u\times\mathbf{r}_v\|\,dA$$</p>
+        </div>
+
+        <h3 class="mt-8">Surface Integrals of Vector Fields (Flux)</h3>
+        <div class="formula-box highlight">
+          <p>$$\iint_S \mathbf{F}\cdot d\mathbf{S} = \iint_D \mathbf{F}(\mathbf{r}(u,v))\cdot(\mathbf{r}_u\times\mathbf{r}_v)\,dA$$</p>
+        </div>
+
+        <h3 class="mt-8">Stokes' Theorem</h3>
+        <div class="formula-box highlight">
+          <p>$$\oint_C \mathbf{F}\cdot d\mathbf{r} = \iint_S (\nabla\times\mathbf{F})\cdot d\mathbf{S}$$</p>
+          <p class="text-muted">Relates a line integral around \(C\) to a surface integral of the curl over \(S\) (where \(C = \partial S\)).</p>
+        </div>
+        <p class="mt-3">Stokes' theorem generalizes Green's theorem to 3D. Green's theorem is the special case where \(S\) lies in the \(xy\)-plane.</p>
+
+        <h3 class="mt-8">Divergence Theorem (Gauss's Theorem)</h3>
+        <div class="formula-box highlight">
+          <p>$$\iint_S \mathbf{F}\cdot d\mathbf{S} = \iiint_E (\nabla\cdot\mathbf{F})\,dV$$</p>
+          <p class="text-muted">Relates the outward flux through closed surface \(S\) to the divergence integrated over the enclosed volume \(E\).</p>
+        </div>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Example (Divergence Theorem)</div>
+          <p>Compute the flux of \(\mathbf{F} = \langle x, y, z\rangle\) outward through the unit sphere \(x^2+y^2+z^2=1\).</p>
+          <p>\(\nabla\cdot\mathbf{F} = 1+1+1 = 3\)</p>
+          <p>\(\displaystyle\iint_S\mathbf{F}\cdot d\mathbf{S} = \iiint_E 3\,dV = 3\cdot\frac{4\pi}{3} = 4\pi\)</p>
+        </div>
+
+        <h3 class="mt-8">Summary of Fundamental Theorems</h3>
+        <div class="table-wrapper">
+          <table class="kolosal-table">
+            <thead><tr><th>Theorem</th><th>Relates</th><th>Equation</th></tr></thead>
+            <tbody>
+              <tr><td>FTC</td><td>Interval → boundary points</td><td>\(\int_a^b F'\,dx = F(b)-F(a)\)</td></tr>
+              <tr><td>Green's</td><td>2D region → boundary curve</td><td>\(\iint_D (\nabla\times\mathbf{F})\,dA = \oint_C\mathbf{F}\cdot d\mathbf{r}\)</td></tr>
+              <tr><td>Stokes'</td><td>Surface → boundary curve</td><td>\(\iint_S(\nabla\times\mathbf{F})\cdot d\mathbf{S} = \oint_C\mathbf{F}\cdot d\mathbf{r}\)</td></tr>
+              <tr><td>Divergence</td><td>Volume → boundary surface</td><td>\(\iiint_E(\nabla\cdot\mathbf{F})\,dV = \iint_S\mathbf{F}\cdot d\mathbf{S}\)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CHAPTER 30: ADVANCED APPLICATIONS -->
+    <!-- ============================================================ -->
+    <section class="chapter" id="ch-applications-advanced">
+      <div class="chapter-header">
+        <span class="chapter-number">Chapter 30</span>
+        <h2>Advanced Applications</h2>
+      </div>
+
+      <div class="content-card">
+        <h3>Fourier Series (Introduction)</h3>
+        <div class="definition-box">
+          <div class="definition-label">Definition</div>
+          <p>A periodic function \(f(x)\) with period \(2L\) can be represented as:</p>
+          <p>$$f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty}\left[a_n\cos\frac{n\pi x}{L} + b_n\sin\frac{n\pi x}{L}\right]$$</p>
+        </div>
+        <div class="formula-box mt-3">
+          <p>\(a_0 = \frac{1}{L}\displaystyle\int_{-L}^L f(x)\,dx\)</p>
+          <p class="mt-2">\(a_n = \frac{1}{L}\displaystyle\int_{-L}^L f(x)\cos\frac{n\pi x}{L}\,dx\)</p>
+          <p class="mt-2">\(b_n = \frac{1}{L}\displaystyle\int_{-L}^L f(x)\sin\frac{n\pi x}{L}\,dx\)</p>
+        </div>
+
+        <h3 class="mt-8">Laplace Transform (Introduction)</h3>
+        <div class="formula-box highlight">
+          <p>$$\mathcal{L}\{f(t)\} = F(s) = \int_0^{\infty} e^{-st}f(t)\,dt$$</p>
+        </div>
+        <div class="table-wrapper mt-4">
+          <table class="kolosal-table">
+            <thead><tr><th>\(f(t)\)</th><th>\(F(s) = \mathcal{L}\{f(t)\}\)</th></tr></thead>
+            <tbody>
+              <tr><td>\(1\)</td><td>\(\frac{1}{s}\)</td></tr>
+              <tr><td>\(t^n\)</td><td>\(\frac{n!}{s^{n+1}}\)</td></tr>
+              <tr><td>\(e^{at}\)</td><td>\(\frac{1}{s-a}\)</td></tr>
+              <tr><td>\(\sin(bt)\)</td><td>\(\frac{b}{s^2+b^2}\)</td></tr>
+              <tr><td>\(\cos(bt)\)</td><td>\(\frac{s}{s^2+b^2}\)</td></tr>
+              <tr><td>\(e^{at}f(t)\)</td><td>\(F(s-a)\)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-8">Partial Differential Equations (Overview)</h3>
+        <p>PDEs involve partial derivatives of multivariable functions. Three classical types:</p>
+        <div class="rules-grid three-col">
+          <div class="rule-item">
+            <span class="rule-name">Heat Equation</span>
+            <span class="rule-formula">\(\frac{\partial u}{\partial t} = k\nabla^2 u\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Wave Equation</span>
+            <span class="rule-formula">\(\frac{\partial^2 u}{\partial t^2} = c^2\nabla^2 u\)</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-name">Laplace Equation</span>
+            <span class="rule-formula">\(\nabla^2 u = 0\)</span>
+          </div>
+        </div>
+        <p class="mt-3">where \(\nabla^2\) is the <strong>Laplacian</strong>: \(\nabla^2 u = \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2}\)</p>
+
+        <h3 class="mt-8">Calculus of Variations (Preview)</h3>
+        <p>Find a function \(y(x)\) that extremizes the functional:</p>
+        <div class="formula-box">
+          <p>$$J[y] = \int_a^b F(x,\,y,\,y')\,dx$$</p>
+          <p class="mt-2">The minimizer satisfies the <strong>Euler-Lagrange equation</strong>:</p>
+          <p>$$\frac{\partial F}{\partial y} - \frac{d}{dx}\frac{\partial F}{\partial y'} = 0$$</p>
+        </div>
+
+        <div class="example-box mt-4">
+          <div class="example-label">Classic Result</div>
+          <p>The shortest path between two points in the plane satisfies the Euler-Lagrange equation for \(F = \sqrt{1 + (y')^2}\), yielding \(y'' = 0\) — a straight line.</p>
+        </div>
+
+        <h3 class="mt-8">Green's Functions (Preview)</h3>
+        <div class="definition-box">
+          <div class="definition-label">Concept</div>
+          <p>A <strong>Green's function</strong> \(G(x, s)\) for a linear differential operator \(L\) satisfies \(LG = \delta(x - s)\), where \(\delta\) is the Dirac delta. The solution to \(Ly = f\) is then:</p>
+          <p>$$y(x) = \int G(x, s)\,f(s)\,ds$$</p>
+        </div>
+      </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="app-footer">
       <div class="footer-content">
-        <p class="text-muted text-13px">Kolosal Math — A comprehensive learning resource from high school mathematics to Calculus 1.</p>
+        <p class="text-muted text-13px">Kolosal Math — A comprehensive learning resource from high school mathematics through advanced calculus, multivariable analysis, and matrix differentiation.</p>
         <p class="text-subtle text-12px mt-2">Built with Kolosal Vanilla Design System</p>
       </div>
     </footer>
