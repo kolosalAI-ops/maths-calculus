@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initSidebar();
   initProgressBar();
   initActiveChapterTracking();
+  // Difficulty mode (loaded from difficulty-mode.js)
+  if (typeof initDifficultyMode === 'function') initDifficultyMode();
+  // Reddit mode (loaded from reddit-mode.js)
+  if (typeof initRedditMode === 'function') initRedditMode();
 });
 
 /* --- KaTeX Auto-Render --- */
