@@ -38,8 +38,6 @@ body.reddit-mode.dark-mode {
 }
 
 /* --- Hide normal UI, show Reddit feed --- */
-body.reddit-mode .sidebar,
-body.reddit-mode .sidebar-overlay,
 body.reddit-mode .hero,
 body.reddit-mode .app-footer {
   display: none !important;
@@ -50,9 +48,142 @@ body.reddit-mode {
 }
 
 body.reddit-mode .main-content {
-  margin-left: 0;
+  margin-left: var(--sidebar-width);
   max-width: 100%;
   background: var(--reddit-bg);
+}
+
+/* --- Reddit Sidebar Widget --- */
+body.reddit-mode .sidebar {
+  background: var(--reddit-card);
+  border-right: 1px solid var(--reddit-border);
+}
+
+body.reddit-mode .sidebar-nav {
+  padding: 0;
+}
+
+/* Widget card header accent */
+body.reddit-mode .sidebar-nav::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: var(--reddit-blue);
+  border-radius: 0;
+}
+
+/* Section titles as Reddit widget category headers */
+body.reddit-mode .sidebar-section {
+  margin-bottom: 0;
+}
+
+body.reddit-mode .sidebar-section-title {
+  padding: 14px 16px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--reddit-meta);
+  border-bottom: 1px solid var(--reddit-border);
+}
+
+/* Sidebar links as Reddit nav items */
+body.reddit-mode .sidebar-link {
+  border-left: none;
+  padding: 7px 12px;
+  margin: 2px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--reddit-text);
+  transition: background 0.15s, color 0.15s;
+}
+
+body.reddit-mode .sidebar-link:hover {
+  background: var(--reddit-hover);
+  color: var(--reddit-text);
+}
+
+body.reddit-mode .sidebar-link.active {
+  background: rgba(0, 121, 211, 0.08);
+  color: var(--reddit-blue);
+  border-left: none;
+  font-weight: 600;
+}
+
+/* Chapter numbers as flair-colored pills */
+body.reddit-mode .sidebar-link-number {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+body.reddit-mode .sidebar-link.active .sidebar-link-number {
+  filter: brightness(1.1);
+}
+
+/* Flair colors per section — Foundations (green) */
+body.reddit-mode .sidebar-section:nth-child(1) .sidebar-link-number {
+  background: #D3F8E2; color: #1B7340;
+}
+/* Functions (blue) */
+body.reddit-mode .sidebar-section:nth-child(2) .sidebar-link-number {
+  background: #DBE9FE; color: #1D4ED8;
+}
+/* Trigonometry (orange) */
+body.reddit-mode .sidebar-section:nth-child(3) .sidebar-link-number {
+  background: #FDE8D8; color: #9A3412;
+}
+/* Calculus 1 (pink) */
+body.reddit-mode .sidebar-section:nth-child(4) .sidebar-link-number {
+  background: #FCE7F3; color: #9D174D;
+}
+/* Calculus 2 (indigo) */
+body.reddit-mode .sidebar-section:nth-child(5) .sidebar-link-number {
+  background: #E0E7FF; color: #3730A3;
+}
+/* Calculus 3 (amber) */
+body.reddit-mode .sidebar-section:nth-child(6) .sidebar-link-number {
+  background: #FEF3C7; color: #92400E;
+}
+/* Calculus 4 (red) */
+body.reddit-mode .sidebar-section:nth-child(7) .sidebar-link-number {
+  background: #FEE2E2; color: #991B1B;
+}
+
+/* Dark mode flair pill overrides */
+body.reddit-mode.dark-mode .sidebar-section:nth-child(1) .sidebar-link-number {
+  background: #064E3B; color: #6EE7B7;
+}
+body.reddit-mode.dark-mode .sidebar-section:nth-child(2) .sidebar-link-number {
+  background: #1E3A5F; color: #93C5FD;
+}
+body.reddit-mode.dark-mode .sidebar-section:nth-child(3) .sidebar-link-number {
+  background: #4A2512; color: #FDBA74;
+}
+body.reddit-mode.dark-mode .sidebar-section:nth-child(4) .sidebar-link-number {
+  background: #4A1035; color: #F9A8D4;
+}
+body.reddit-mode.dark-mode .sidebar-section:nth-child(5) .sidebar-link-number {
+  background: #1E1B4B; color: #A5B4FC;
+}
+body.reddit-mode.dark-mode .sidebar-section:nth-child(6) .sidebar-link-number {
+  background: #451A03; color: #FCD34D;
+}
+body.reddit-mode.dark-mode .sidebar-section:nth-child(7) .sidebar-link-number {
+  background: #450A0A; color: #FCA5A5;
+}
+
+body.reddit-mode.dark-mode .sidebar-link.active {
+  background: rgba(0, 121, 211, 0.15);
+}
+
+/* Adjust feed centering with sidebar visible */
+body.reddit-mode .reddit-feed {
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 /* --- Reddit Header Override --- */

@@ -73,6 +73,19 @@
     margin-left: 0;
   }
 
+  /* Reddit mode: sidebar slides in on mobile, not always visible */
+  body.reddit-mode .sidebar {
+    transform: translateX(-100%);
+  }
+
+  body.reddit-mode .sidebar.open {
+    transform: translateX(0);
+  }
+
+  body.reddit-mode .main-content {
+    margin-left: 0;
+  }
+
   .hero {
     padding: 60px 40px 48px;
   }
