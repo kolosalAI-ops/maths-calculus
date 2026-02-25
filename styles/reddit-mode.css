@@ -53,6 +53,20 @@ body.reddit-mode .main-content {
   background: var(--reddit-bg);
 }
 
+@media (max-width: 1024px) {
+  body.reddit-mode .main-content {
+    margin-left: 0;
+  }
+
+  body.reddit-mode .sidebar {
+    transform: translateX(-100%);
+  }
+
+  body.reddit-mode .sidebar.open {
+    transform: translateX(0);
+  }
+}
+
 /* --- Reddit Sidebar Widget --- */
 body.reddit-mode .sidebar {
   background: var(--reddit-card);
