@@ -191,6 +191,111 @@ function setDifficultyMode(mode) {
     injectNotes();
     notesInjected = true;
   }
+
+  clearAdvancedSidebar();
+  if (mode === 'advanced') {
+    buildAdvancedSidebar();
+  }
+}
+
+/* --- Advanced Mode: Sidebar Subtopic Navigation --- */
+
+function slugify(text) {
+  return 'sub-' + text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+function buildAdvancedSidebar() {
+  const sidebarLinks = document.querySelectorAll('.sidebar-link[data-chapter]');
+
+  sidebarLinks.forEach(link => {
+    const chapterId = link.getAttribute('data-chapter');
+    const chapter = document.getElementById(chapterId);
+    if (!chapter) return;
+
+    const contentCard = chapter.querySelector('.content-card');
+    if (!contentCard) return;
+
+    const h3s = contentCard.querySelectorAll('h3');
+    if (h3s.length === 0) return;
+
+    const container = document.createElement('div');
+    container.className = 'sidebar-subtopics';
+
+    h3s.forEach(h3 => {
+      if (!h3.id) {
+        h3.id = slugify(h3.textContent.trim());
+      }
+
+      const a = document.createElement('a');
+      a.className = 'sidebar-subtopic';
+      a.href = '#' + h3.id;
+      a.textContent = h3.textContent.trim();
+
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        h3.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Close sidebar on mobile
+        if (window.innerWidth <= 1024) {
+          const sidebar = document.getElementById('sidebar');
+          const overlay = document.getElementById('sidebarOverlay');
+          if (sidebar) sidebar.classList.remove('open');
+          if (overlay) overlay.classList.remove('visible');
+          document.body.classList.remove('sidebar-open');
+        }
+      });
+
+      container.appendChild(a);
+    });
+
+    // Insert the subtopics container right after the sidebar link
+    link.insertAdjacentElement('afterend', container);
+  });
+
+  // Start tracking active subtopics on scroll
+  initActiveSubtopicTracking();
+}
+
+function clearAdvancedSidebar() {
+  document.querySelectorAll('.sidebar-subtopics').forEach(el => el.remove());
+  if (_subtopicScrollHandler) {
+    window.removeEventListener('scroll', _subtopicScrollHandler);
+    _subtopicScrollHandler = null;
+  }
+}
+
+let _subtopicScrollHandler = null;
+
+function initActiveSubtopicTracking() {
+  const headerOffset = 80;
+
+  function updateActiveSubtopic() {
+    const subtopicLinks = document.querySelectorAll('.sidebar-subtopic');
+    if (subtopicLinks.length === 0) return;
+
+    let currentId = '';
+
+    subtopicLinks.forEach(link => {
+      const targetId = link.getAttribute('href')?.replace('#', '');
+      if (!targetId) return;
+      const el = document.getElementById(targetId);
+      if (!el) return;
+
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= headerOffset + 100) {
+        currentId = targetId;
+      }
+    });
+
+    subtopicLinks.forEach(link => {
+      const targetId = link.getAttribute('href')?.replace('#', '');
+      link.classList.toggle('active', targetId === currentId);
+    });
+  }
+
+  _subtopicScrollHandler = updateActiveSubtopic;
+  window.addEventListener('scroll', updateActiveSubtopic, { passive: true });
+  updateActiveSubtopic();
 }
 
 function injectNotes() {
