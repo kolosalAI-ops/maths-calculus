@@ -150,6 +150,28 @@ function initDifficultyMode() {
       btn.classList.add('active');
       setDifficultyMode(mode);
       localStorage.setItem('kolosal-math-difficulty', mode);
+
+      // Re-render KaTeX in Reddit feed if it's active (concept cards may contain math)
+      if (document.body.classList.contains('reddit-mode')) {
+        const feed = document.querySelector('.reddit-feed');
+        if (feed) {
+          setTimeout(() => {
+            if (typeof renderKaTeXIn === 'function') {
+              renderKaTeXIn(feed);
+            } else if (typeof renderMathInElement === 'function') {
+              renderMathInElement(feed, {
+                delimiters: typeof KATEX_DELIMITERS !== 'undefined' ? KATEX_DELIMITERS : [
+                  { left: '$$', right: '$$', display: true },
+                  { left: '\\[', right: '\\]', display: true },
+                  { left: '\\(', right: '\\)', display: false },
+                  { left: '$', right: '$', display: false },
+                ],
+                throwOnError: false,
+              });
+            }
+          }, 100);
+        }
+      }
     });
   });
 }

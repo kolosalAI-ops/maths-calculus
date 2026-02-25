@@ -400,6 +400,17 @@ body.reddit-mode.dark-mode .reddit-flair-calc4 { background: #450A0A; color: #FC
   background: var(--reddit-hover);
 }
 
+/* Focus-visible for Reddit buttons */
+.reddit-vote-btn:focus-visible { outline: 2px solid var(--reddit-orange); outline-offset: 1px; }
+.reddit-action-btn:focus-visible { outline: 2px solid var(--reddit-blue); outline-offset: 1px; }
+.reddit-topbar-item:focus-visible { outline: 2px solid var(--reddit-blue); outline-offset: -2px; }
+.reddit-toggle-btn:focus-visible { outline: 2px solid var(--reddit-orange); outline-offset: 2px; }
+
+/* Active/pressed states for Reddit buttons */
+.reddit-vote-btn:active { transform: scale(0.9); }
+.reddit-action-btn:active { background: var(--reddit-border); }
+.reddit-topbar-item:active { transform: scale(0.97); }
+
 .reddit-action-btn svg {
   width: 16px;
   height: 16px;

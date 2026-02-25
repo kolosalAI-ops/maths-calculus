@@ -35,6 +35,15 @@
   background: var(--color-grey-50);
 }
 
+.mode-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -1px;
+}
+
+.mode-btn:active {
+  transform: scale(0.97);
+}
+
 .mode-btn.active {
   background: var(--color-grey-900);
   color: #FFFFFF;

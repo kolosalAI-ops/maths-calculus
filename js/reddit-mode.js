@@ -110,9 +110,31 @@ const REDDIT_CONFIG = {
 };
 
 let redditFeedBuilt = false;
+let originalPostOrder = []; // Store original DOM order for "Hot" sort
+
+// localStorage keys
+const STORAGE_SAVES = 'kolosal-reddit-saves';
+const STORAGE_VOTES = 'kolosal-reddit-votes';
+
+function getSavedPosts() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_SAVES)) || {}; } catch { return {}; }
+}
+
+function setSavedPosts(obj) {
+  localStorage.setItem(STORAGE_SAVES, JSON.stringify(obj));
+}
+
+function getVoteStates() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_VOTES)) || {}; } catch { return {}; }
+}
+
+function setVoteStates(obj) {
+  localStorage.setItem(STORAGE_VOTES, JSON.stringify(obj));
+}
 
 function initRedditMode() {
   const toggleBtn = document.getElementById('redditToggle');
+  if (!toggleBtn) return;
   const stored = localStorage.getItem('kolosal-math-reddit');
 
   if (stored === 'true') {
@@ -126,6 +148,53 @@ function initRedditMode() {
       enableRedditMode();
     }
   });
+
+  // Wire up topbar sort buttons (Hot/New/Top/Rising)
+  initTopbarButtons();
+}
+
+function initTopbarButtons() {
+  const topbar = document.querySelector('.reddit-topbar');
+  if (!topbar) return;
+
+  topbar.querySelectorAll('.reddit-topbar-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      topbar.querySelectorAll('.reddit-topbar-item').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const feed = document.querySelector('.reddit-feed');
+      if (!feed) return;
+      const posts = Array.from(feed.querySelectorAll('.reddit-post'));
+      if (posts.length === 0) return;
+
+      const sortType = btn.textContent.trim().toLowerCase();
+      if (sortType === 'hot') {
+        // Restore original order
+        originalPostOrder.forEach(p => feed.appendChild(p));
+      } else if (sortType === 'new') {
+        const reversed = [...originalPostOrder].reverse();
+        reversed.forEach(p => feed.appendChild(p));
+      } else if (sortType === 'top') {
+        posts.sort((a, b) => {
+          const aV = parseVoteCount(a.querySelector('.reddit-vote-count'));
+          const bV = parseVoteCount(b.querySelector('.reddit-vote-count'));
+          return bV - aV;
+        });
+        posts.forEach(p => feed.appendChild(p));
+      } else if (sortType.includes('rising')) {
+        posts.sort(() => Math.random() - 0.5);
+        posts.forEach(p => feed.appendChild(p));
+      }
+      feed.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+function parseVoteCount(el) {
+  if (!el) return 0;
+  const text = el.textContent.trim();
+  if (text.endsWith('k')) return parseFloat(text) * 1000;
+  return parseInt(text, 10) || 0;
 }
 
 function enableRedditMode() {
@@ -133,25 +202,36 @@ function enableRedditMode() {
   localStorage.setItem('kolosal-math-reddit', 'true');
 
   if (!redditFeedBuilt) {
-    buildRedditFeed();
-    redditFeedBuilt = true;
-  }
+    // Show loading spinner before heavy DOM work
+    const loading = document.querySelector('.reddit-loading');
+    if (loading) loading.style.display = 'block';
 
-  // Re-render KaTeX in reddit feed
-  setTimeout(() => {
-    if (typeof renderMathInElement === 'function') {
-      const feed = document.querySelector('.reddit-feed');
-      if (feed) renderMathInElement(feed, {
-        delimiters: [
-          { left: '$$', right: '$$', display: true },
-          { left: '\\[', right: '\\]', display: true },
-          { left: '\\(', right: '\\)', display: false },
-          { left: '$', right: '$', display: false },
-        ],
-        throwOnError: false,
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        buildRedditFeed();
+        redditFeedBuilt = true;
+        if (loading) loading.style.display = '';
+
+        // Re-render KaTeX in reddit feed
+        setTimeout(() => {
+          const feed = document.querySelector('.reddit-feed');
+          if (feed && typeof renderKaTeXIn === 'function') {
+            renderKaTeXIn(feed);
+          } else if (feed && typeof renderMathInElement === 'function') {
+            renderMathInElement(feed, { delimiters: KATEX_DELIMITERS, throwOnError: false });
+          }
+        }, 200);
       });
-    }
-  }, 200);
+    });
+  } else {
+    // Re-render KaTeX in reddit feed
+    setTimeout(() => {
+      const feed = document.querySelector('.reddit-feed');
+      if (feed && typeof renderKaTeXIn === 'function') {
+        renderKaTeXIn(feed);
+      }
+    }, 200);
+  }
 
   window.scrollTo(0, 0);
 }
@@ -161,9 +241,42 @@ function disableRedditMode() {
   localStorage.setItem('kolosal-math-reddit', 'false');
 }
 
+function renderKaTeXInArea(el) {
+  if (typeof renderKaTeXIn === 'function') {
+    renderKaTeXIn(el);
+  } else if (typeof renderMathInElement === 'function') {
+    renderMathInElement(el, {
+      delimiters: typeof KATEX_DELIMITERS !== 'undefined' ? KATEX_DELIMITERS : [
+        { left: '$$', right: '$$', display: true },
+        { left: '\\[', right: '\\]', display: true },
+        { left: '\\(', right: '\\)', display: false },
+        { left: '$', right: '$', display: false },
+      ],
+      throwOnError: false,
+    });
+  }
+}
+
+function expandPost(post) {
+  if (post.classList.contains('expanded')) return;
+  post.classList.add('expanded');
+  const contentArea = post.querySelector('.reddit-post-content');
+  if (contentArea) {
+    setTimeout(() => renderKaTeXInArea(contentArea), 50);
+  }
+}
+
+function collapsePost(post) {
+  post.classList.remove('expanded');
+}
+
 function buildRedditFeed() {
   const feed = document.querySelector('.reddit-feed');
+  if (!feed) return;
   const chapters = document.querySelectorAll('.chapter');
+
+  const savedPosts = getSavedPosts();
+  const voteStates = getVoteStates();
 
   chapters.forEach((chapter, i) => {
     const id = chapter.id;
@@ -192,15 +305,23 @@ function buildRedditFeed() {
     // Random comments for this post
     const postComments = getRandomComments(2);
 
+    // Restore vote state
+    const voteState = voteStates[id] || null; // 'up', 'down', or null
+    const displayVotes = voteState === 'up' ? upvotes + 1 : voteState === 'down' ? upvotes - 1 : upvotes;
+
+    // Restore save state
+    const isSaved = !!savedPosts[id];
+
     const post = document.createElement('div');
     post.className = 'reddit-post';
+    post.dataset.chapterId = id;
     post.innerHTML = `
       <div class="reddit-vote">
-        <button class="reddit-vote-btn upvote-btn" aria-label="Upvote">
+        <button class="reddit-vote-btn upvote-btn${voteState === 'up' ? ' upvoted' : ''}" aria-label="Upvote">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
         </button>
-        <span class="reddit-vote-count">${formatNumber(upvotes)}</span>
-        <button class="reddit-vote-btn downvote-btn" aria-label="Downvote">
+        <span class="reddit-vote-count">${formatNumber(displayVotes)}</span>
+        <button class="reddit-vote-btn downvote-btn${voteState === 'down' ? ' downvoted' : ''}" aria-label="Downvote">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20l8-8h-5V4H9v8H4z"/></svg>
         </button>
       </div>
@@ -233,25 +354,26 @@ function buildRedditFeed() {
         </div>
         <div class="reddit-actions">
           <div class="reddit-mobile-votes">
-            <button class="reddit-vote-btn upvote-btn" aria-label="Upvote">
+            <button class="reddit-vote-btn upvote-btn${voteState === 'up' ? ' upvoted' : ''}" aria-label="Upvote">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
             </button>
-            <span class="reddit-vote-count">${formatNumber(upvotes)}</span>
-            <button class="reddit-vote-btn downvote-btn" aria-label="Downvote">
+            <span class="reddit-vote-count">${formatNumber(displayVotes)}</span>
+            <button class="reddit-vote-btn downvote-btn${voteState === 'down' ? ' downvoted' : ''}" aria-label="Downvote">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20l8-8h-5V4H9v8H4z"/></svg>
             </button>
           </div>
-          <button class="reddit-action-btn">
+          <button class="reddit-action-btn reddit-comments-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             ${comments} Comments
           </button>
-          <button class="reddit-action-btn">
+          <button class="reddit-action-btn reddit-share-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
             Share
           </button>
           <button class="reddit-action-btn reddit-save-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-            Save
+            ${isSaved
+              ? '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg> Unsave'
+              : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg> Save'}
           </button>
         </div>
       </div>
@@ -263,88 +385,168 @@ function buildRedditFeed() {
       contentArea.appendChild(contentClone);
     }
 
-    // Wire up expand/collapse
+    // Wire up expand/collapse via "Read full post..."
     const expandBtn = post.querySelector('.reddit-post-expand');
     const previewEl = post.querySelector('.reddit-post-preview');
 
     expandBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      post.classList.add('expanded');
-      // Re-render KaTeX in expanded content
-      setTimeout(() => {
-        if (typeof renderMathInElement === 'function') {
-          renderMathInElement(contentArea, {
-            delimiters: [
-              { left: '$$', right: '$$', display: true },
-              { left: '\\[', right: '\\]', display: true },
-              { left: '\\(', right: '\\)', display: false },
-              { left: '$', right: '$', display: false },
-            ],
-            throwOnError: false,
-          });
-        }
-      }, 50);
+      expandPost(post);
     });
 
     previewEl.addEventListener('click', (e) => {
       if (!post.classList.contains('expanded')) {
         e.stopPropagation();
-        post.classList.add('expanded');
-        setTimeout(() => {
-          if (typeof renderMathInElement === 'function') {
-            renderMathInElement(contentArea, {
-              delimiters: [
-                { left: '$$', right: '$$', display: true },
-                { left: '\\[', right: '\\]', display: true },
-                { left: '\\(', right: '\\)', display: false },
-                { left: '$', right: '$', display: false },
-              ],
-              throwOnError: false,
-            });
-          }
-        }, 50);
+        expandPost(post);
       }
     });
 
-    // Wire up vote buttons
-    post.querySelectorAll('.upvote-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isActive = btn.classList.contains('upvoted');
-        // Reset all vote buttons in this post
-        post.querySelectorAll('.upvote-btn').forEach(b => b.classList.toggle('upvoted', !isActive));
-        post.querySelectorAll('.downvote-btn').forEach(b => b.classList.remove('downvoted'));
-        post.querySelectorAll('.reddit-vote-count').forEach(el => {
-          el.textContent = formatNumber(isActive ? upvotes : upvotes + 1);
-        });
-      });
+    // Toggle collapse when clicking the title area
+    const titleEl = post.querySelector('.reddit-post-title');
+    titleEl.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (post.classList.contains('expanded')) {
+        collapsePost(post);
+      } else {
+        expandPost(post);
+      }
     });
+    titleEl.style.cursor = 'pointer';
 
-    post.querySelectorAll('.downvote-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isActive = btn.classList.contains('downvoted');
-        post.querySelectorAll('.downvote-btn').forEach(b => b.classList.toggle('downvoted', !isActive));
-        post.querySelectorAll('.upvote-btn').forEach(b => b.classList.remove('upvoted'));
-        post.querySelectorAll('.reddit-vote-count').forEach(el => {
-          el.textContent = formatNumber(isActive ? upvotes : upvotes - 1);
-        });
-      });
-    });
+    // Wire up vote buttons with persistence
+    wireVoteButtons(post, id, upvotes);
 
-    // Save button toggle
+    // Save button toggle with persistence
     post.querySelectorAll('.reddit-save-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isSaved = btn.textContent.trim().startsWith('Unsave');
-        btn.innerHTML = isSaved
-          ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg> Save'
-          : '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg> Unsave';
+        const currentlySaved = btn.textContent.trim().startsWith('Unsave');
+        const saves = getSavedPosts();
+        if (currentlySaved) {
+          delete saves[id];
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg> Save';
+        } else {
+          saves[id] = true;
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg> Unsave';
+        }
+        setSavedPosts(saves);
+      });
+    });
+
+    // Comments button — expand post and scroll to comments with highlight
+    post.querySelectorAll('.reddit-comments-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        expandPost(post);
+        const commentsPeek = post.querySelector('.reddit-comments-peek');
+        if (commentsPeek) {
+          setTimeout(() => {
+            commentsPeek.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Brief highlight animation
+            commentsPeek.style.background = 'rgba(0, 121, 211, 0.08)';
+            setTimeout(() => { commentsPeek.style.background = ''; }, 1200);
+          }, 100);
+        }
+      });
+    });
+
+    // Share button — copy link with fallback
+    post.querySelectorAll('.reddit-share-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const postTitle = post.querySelector('.reddit-post-title')?.textContent?.trim() || 'Math post';
+        const shareUrl = window.location.origin + window.location.pathname + '#' + id;
+
+        if (navigator.share) {
+          navigator.share({ title: postTitle, url: shareUrl }).catch(() => {});
+        } else if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(shareUrl).then(() => {
+            showShareFeedback(btn);
+          }).catch(() => {
+            fallbackCopy(shareUrl, btn);
+          });
+        } else {
+          fallbackCopy(shareUrl, btn);
+        }
       });
     });
 
     feed.appendChild(post);
   });
+
+  // Store original order
+  originalPostOrder = Array.from(feed.querySelectorAll('.reddit-post'));
+}
+
+function wireVoteButtons(post, chapterId, baseUpvotes) {
+  const voteStates = getVoteStates();
+
+  post.querySelectorAll('.upvote-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const states = getVoteStates();
+      const isActive = states[chapterId] === 'up';
+      if (isActive) {
+        delete states[chapterId];
+      } else {
+        states[chapterId] = 'up';
+      }
+      setVoteStates(states);
+
+      // Update UI
+      const newVotes = states[chapterId] === 'up' ? baseUpvotes + 1 : baseUpvotes;
+      post.querySelectorAll('.upvote-btn').forEach(b => b.classList.toggle('upvoted', !isActive));
+      post.querySelectorAll('.downvote-btn').forEach(b => b.classList.remove('downvoted'));
+      post.querySelectorAll('.reddit-vote-count').forEach(el => {
+        el.textContent = formatNumber(newVotes);
+      });
+    });
+  });
+
+  post.querySelectorAll('.downvote-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const states = getVoteStates();
+      const isActive = states[chapterId] === 'down';
+      if (isActive) {
+        delete states[chapterId];
+      } else {
+        states[chapterId] = 'down';
+      }
+      setVoteStates(states);
+
+      // Update UI
+      const newVotes = states[chapterId] === 'down' ? baseUpvotes - 1 : baseUpvotes;
+      post.querySelectorAll('.downvote-btn').forEach(b => b.classList.toggle('downvoted', !isActive));
+      post.querySelectorAll('.upvote-btn').forEach(b => b.classList.remove('upvoted'));
+      post.querySelectorAll('.reddit-vote-count').forEach(el => {
+        el.textContent = formatNumber(newVotes);
+      });
+    });
+  });
+}
+
+function showShareFeedback(btn) {
+  const origHTML = btn.innerHTML;
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+  setTimeout(() => { btn.innerHTML = origHTML; }, 2000);
+}
+
+function fallbackCopy(text, btn) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.left = '-9999px';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  try {
+    document.execCommand('copy');
+    showShareFeedback(btn);
+  } catch {
+    // Silent fail
+  }
+  document.body.removeChild(textarea);
 }
 
 function generateAwards(upvotes) {
